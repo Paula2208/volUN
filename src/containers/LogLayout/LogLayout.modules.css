@@ -1,0 +1,90 @@
+.Loglayout{
+    display: flex;
+    flex-direction: row;
+    color: white;
+}
+
+.LogLayout-baseModalLogin{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 600px;
+    height: 100vh;
+    left: 0px;
+    top: 0px;
+
+    background: #000F73;
+    border: 3px solid #4960F4;
+    border-radius: 0px 50px 50px 0px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+}
+
+.login-image{
+    margin-left: 550px;
+    height: 100vh;
+    width: 64%;
+    opacity: 80%;
+    object-fit: cover;
+}
+
+.globo-1{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 429px;
+    height: 70px;
+
+    background: rgba(73, 96, 244, 0.1);
+    border: 3px solid #4960F4;
+    border-radius: 50px;
+}
+
+.globo-2{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 429px;
+    height: 70px;
+    left: 80px;
+    top: 30px;
+
+    background: rgba(73, 96, 244, 0.25);
+    border: 3px solid #4960F4;
+    border-radius: 50px;
+}
+
+.LogLayout-globes-up{
+    position: absolute;
+    top: 5%;
+    left: 7%;
+}
+
+
+.LogLayout-globes-down{
+    position: absolute;
+    top: 82%;
+    left: 7%;
+}
+
+.LogLayout-AppName{
+    display: flex;
+    flex-direction:row;
+    color:#4960F4;
+    justify-content: center;
+    gap: 20px;
+}
+
+.LogLayout-AppName span{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 100px;
+    line-height: 117px;
+}
+
+.LogLayout-AppName-icon{
+    font-size: 115px;
+}
