@@ -88,3 +88,9 @@
 .LogLayout-AppName-icon{
     font-size: 115px;
 }
+
+.LogLayout-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
