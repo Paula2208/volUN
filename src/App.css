@@ -21,6 +21,14 @@
   min-height:100vh;
 }
 
+.pointer{
+  cursor: pointer;
+}
+
+.noPointer{
+  cursor: default;
+}
+
 .App-link {
   color: #61dafb;
 }
