@@ -2,7 +2,7 @@ import './Login.modules.css';
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
 
-function Login() {
+function Login(props) {
 
   const navigate = useNavigate();
 
@@ -11,6 +11,7 @@ function Login() {
 
   const handleLogin = () => {
     console.log('button login clicked')
+    props.setIsLogged(true);
   }
 
   return (
