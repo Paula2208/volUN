@@ -12,7 +12,7 @@ function Roots() {
         return(
             <Routes>
                 <Route path="/" element={<LogLayout />}>
-                    <Route index element={<Login />}/>
+                    <Route index element={<Login setIsLogged={setIsLogged}/>}/>
                     <Route path="signup" element={<Signup />}/>
                     <Route path="forgot-password" element={<ForgotPassword />}/>
                 </Route>
@@ -22,7 +22,8 @@ function Roots() {
 
     return (
         <Routes>
-            <Route></Route>
+            <Route>
+            </Route>
         </Routes>
     );
 }
