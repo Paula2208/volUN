@@ -1,6 +1,7 @@
 import './Login.modules.css';
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function Login(props) {
 
@@ -8,10 +9,20 @@ function Login(props) {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const datos = {
+    "username": username,
+    "password": password
+  }
 
-  const handleLogin = () => {
-    console.log('button login clicked')
-    props.setIsLogged(true);
+  const handleLogin =async(e) => {
+    e.preventDefault();
+    if(!e.target.checkValidity()){
+      console.log("credenciales incorrectas");
+
+    }else{
+        let res = await axios.post("http://localhost:2022/login",datos);
+        console.log(res.data)
+    }
   }
 
   return (
@@ -39,11 +50,12 @@ function Login(props) {
       <div className="Login-buttons">
         <button className="Login-btn-login pointer"
                 onClick={handleLogin}
+                
         >
           Login
         </button>
         <button className="Login-btn-signup pointer"
-                onClick={() => navigate("/signup")}
+               onClick={() => navigate("/signup")}
         >
           Signup
         </button>
