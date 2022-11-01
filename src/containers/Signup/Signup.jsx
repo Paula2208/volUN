@@ -1,7 +1,8 @@
-
 import './Signup.modules.css';
-import {useState} from "react";
-import Axios from 'axios';
+import { useState } from "react";
+import { createUser } from "../../api/auth";
+import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 function Signup() {
 
@@ -10,44 +11,72 @@ function Signup() {
     const [email, setEmail] = useState('');
     const [cellphoneNumber, setCellphoneNumber] = useState('');
     const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
     const [accountType, setAccountType] = useState('');
 
-    const createUser = () => {
-        Axios.post('http://localhost:2022/v1/auth/user',
-            {name: name,
-                lastName: lastName,
-                email: email,
-                cellphoneNumber: cellphoneNumber,
-                password: password,
-                accountType: accountType}).then(() => {
-            console.log('success!');
-        })
-    };
+    const navigate = useNavigate();
 
+    const handleCreate = (e) => {
+        createUser(name, lastName, email, cellphoneNumber, username, password, accountType)
+            .then((results) => {
+                if (results === true) {
+                    toast("User created!");
+                    navigate("../");
+                }
+            })
+            .catch(console.error)
+    }
+
+    const handleCancel = (e) => {
+        setName('');
+        setLastName('');
+        setEmail('');
+        setCellphoneNumber('');
+        setPassword('');
+        setAccountType('');
+        navigate("../");
+    }
 
     return (
         <div className="Signup-title">
-            <div className = 'informacion'>
-                <h1>Aqui el Signup</h1>
-                <label>Primer Nombre:</label>
+            <div className='informacion'>
+
+                <div>
+                    <input type='text'
+                        placeholder="First Name*"
+                        onChange={(event) => { setName(event.target.value); }} />
+                    <input type='text'
+                        placeholder="Last Name*"
+                        onChange={(event) => { setLastName(event.target.value); }} />
+                </div>
+
+                <div>
+                    <input type='text'
+                        placeholder="Email*"
+                        onChange={(event) => { setEmail(event.target.value); }} />
+                    <input type='text'
+                        placeholder="Phonenumber*"
+                        onChange={(event) => { setCellphoneNumber(event.target.value); }} />
+                </div>
+
+                <div>
+                    <input type='text'
+                        placeholder="Username*"
+                        onChange={(event) => { setUsername(event.target.value); }} />
+                    <input type='text'
+                        placeholder="Password*"
+                        onChange={(event) => { setPassword(event.target.value); }} />
+                </div>
+
                 <input type='text'
-                       onChange={(event)=>{setName(event.target.value);}}/>
-                <label>Apellido:</label>
-                <input type='text'
-                       onChange={(event)=>{setLastName(event.target.value);}}/>
-                <label>correo</label>
-                <input type='text'
-                       onChange={(event)=>{setEmail(event.target.value);}}/>
-                <label>numero celular:</label>
-                <input type='text'
-                       onChange={(event)=>{setCellphoneNumber(event.target.value);}}/>
-                <label>password:</label>
-                <input type='text'
-                       onChange={(event)=>{setPassword(event.target.value);}}/>
-                <label>tipo de cuenta</label>
-                <input type='text'
-                       onChange={(event)=>{setAccountType(event.target.value);}}/>
-                <button onClick={createUser}> Signup</button>
+                    placeholder="Select user type*"
+                    onChange={(event) => { setAccountType(event.target.value); }} />
+                    
+                <div>
+                    <button onClick={handleCreate}> Signup</button>
+                    <button onClick={handleCancel}> Cancel</button>
+                </div>
+
             </div>
         </div>
 
