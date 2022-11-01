@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function Login(props) {
+function Login() {
 
   const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ function Login(props) {
       console.log("credenciales incorrectas");
 
     }else{
-        let res = await axios.post("http://localhost:2022/login",datos);
+        let res = await axios.post('http://localhost:2022/v1/auth',datos);
         console.log(res.data)
     }
   }
