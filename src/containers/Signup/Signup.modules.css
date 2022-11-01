@@ -1,3 +1,20 @@
 .Signup-title{
-    color: #ffffff;
+    color: #fcfcfc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+}
+
+.informacion {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+}
+
+.informacion input {
+    width: 300px;
+    height: 25px;
 }
