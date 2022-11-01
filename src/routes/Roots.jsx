@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import {Routes, Route} from 'react-router-dom'
 import LogLayout from '../containers/LogLayout/LogLayout'
+import FeedLayout from '../containers/FeedLayout/FeedLayout'
+import Feed from '../containers/Feed/Feed'
 import Login from '../containers/Login/Login'
 import Signup from '../containers/Signup/Signup'
 import ForgotPassword from '../containers/ForgotPassword/ForgotPassword'
@@ -22,7 +24,8 @@ function Roots() {
 
     return (
         <Routes>
-            <Route>
+            <Route path="/app" element={<FeedLayout />}>
+                <Route index element={<Feed />}/>
             </Route>
         </Routes>
     );

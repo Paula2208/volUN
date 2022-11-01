@@ -20,10 +20,10 @@
   },
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "env-cmd -f .env/.env react-scripts start",
-    "build": "env-cmd -f .env/.env react-scripts build",
-    "test": "env-cmd -f .env/.env react-scripts test",
-    "eject": "env-cmd -f .env/.env react-scripts eject"
+    "start": "env-cmd -e LOCAL react-scripts start",
+    "build": "env-cmd -e LOCAL react-scripts build",
+    "test": "env-cmd -e LOCAL react-scripts test",
+    "eject": "env-cmd -e LOCAL react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

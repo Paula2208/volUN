@@ -1,28 +1,42 @@
 import './Login.modules.css';
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
-import axios from 'axios';
+import { login } from "../../api/auth";
+import { toast } from 'react-toastify';
 
-function Login() {
+function Login(props) {
+
+  const {setIsLogged} = props;
 
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const datos = {
-    "username": username,
-    "password": password
-  }
 
-  const handleLogin =async(e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    if(!e.target.checkValidity()){
-      console.log("credenciales incorrectas");
 
-    }else{
-        let res = await axios.post('http://localhost:2022/v1/auth',datos);
-        console.log(res.data)
+    if(username === ''){
+      toast.error("Please add a username");
+      return
     }
+
+    if(password === ''){
+      toast.error("Please add a password");
+      return
+    }
+
+    login(username, password)
+      .then((results) => {
+        if (results === true) {
+          setIsLogged(true);
+          navigate("/app");
+        }
+        else{
+          toast.error("No user found.");
+        }
+      })
+      .catch(console.error);
   }
 
   return (
