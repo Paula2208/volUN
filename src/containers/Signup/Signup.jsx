@@ -10,8 +10,8 @@ function Signup() {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [cellphoneNumber, setCellphoneNumber] = useState('');
-    const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     const [accountType, setAccountType] = useState('');
 
     const navigate = useNavigate();
@@ -32,7 +32,7 @@ function Signup() {
             return
         }
 
-        if(cellphoneNumber){
+        if(cellphoneNumber===''){
             toast.error("Please add a cellphoneNumber");
             return
         }
@@ -67,6 +67,7 @@ function Signup() {
         setLastName('');
         setEmail('');
         setCellphoneNumber('');
+        setUsername('');
         setPassword('');
         setAccountType('');
         navigate("../");
