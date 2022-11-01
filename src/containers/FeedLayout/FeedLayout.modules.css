@@ -1,0 +1,30 @@
+.Feedlayout{
+    display: flex;
+    flex-direction: row;
+    color: white;
+}
+.FeedLayout-AppName{
+    display: flex;
+    flex-direction:row;
+    color:#4960F4;
+    justify-content: center;
+    gap: 20px;
+}
+
+.FeedLayout-AppName span{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 100px;
+    line-height: 117px;
+}
+
+.FeedLayout-AppName-icon{
+    font-size: 115px;
+}
+
+.FeedLayout-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

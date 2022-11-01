@@ -1,17 +1,42 @@
 import './Login.modules.css';
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
+import { login } from "../../api/auth";
+import { toast } from 'react-toastify';
 
 function Login(props) {
+
+  const {setIsLogged} = props;
 
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    console.log('button login clicked')
-    props.setIsLogged(true);
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    if(username === ''){
+      toast.error("Please add a username");
+      return
+    }
+
+    if(password === ''){
+      toast.error("Please add a password");
+      return
+    }
+
+    login(username, password)
+      .then((results) => {
+        if (results === true) {
+          setIsLogged(true);
+          navigate("/app");
+        }
+        else{
+          toast.error("No user found.");
+        }
+      })
+      .catch(console.error);
   }
 
   return (
@@ -39,11 +64,12 @@ function Login(props) {
       <div className="Login-buttons">
         <button className="Login-btn-login pointer"
                 onClick={handleLogin}
+                
         >
           Login
         </button>
         <button className="Login-btn-signup pointer"
-                onClick={() => navigate("/signup")}
+               onClick={() => navigate("/signup")}
         >
           Signup
         </button>
