@@ -17,10 +17,45 @@ function Signup() {
     const navigate = useNavigate();
 
     const handleCreate = (e) => {
+        if(name === ''){
+            toast.error("Please add a name");
+            return
+        }
+
+        if(lastName === ''){
+            toast.error("Please add a last name");
+            return
+        }
+
+        if(email === ''){
+            toast.error("Please add an email");
+            return
+        }
+
+        if(cellphoneNumber){
+            toast.error("Please add a cellphoneNumber");
+            return
+        }
+
+        if(password === ''){
+            toast.error("Please add a password");
+            return
+        }
+
+        if(username === ''){
+            toast.error("Please add a username");
+            return
+        }
+
+        if(accountType === ''){
+            toast.error("Please select an accountType");
+            return
+        }
+
         createUser(name, lastName, email, cellphoneNumber, username, password, accountType)
             .then((results) => {
                 if (results === true) {
-                    toast("User created!");
+                    toast.success("User created!");
                     navigate("../");
                 }
             })
