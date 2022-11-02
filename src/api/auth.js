@@ -39,8 +39,8 @@ export const login = (
             "password": password
         })
         .then((results) => {
-            console.log('PAU LOGIN USER',results); //@audit
-            resolve(true); //@audit por ahora :c hay que cambiar el backend por booleanos
+            
+            resolve(results.data); 
         })
         .catch(err => {
             reject(false);
