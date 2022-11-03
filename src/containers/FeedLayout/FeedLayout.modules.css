@@ -1,4 +1,4 @@
-.Feedlayout{
+.FeedLayout{
     display: flex;
     flex-direction: row;
     color: white;
@@ -8,23 +8,45 @@
     flex-direction:row;
     color:#4960F4;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 .FeedLayout-AppName span{
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
-    font-size: 100px;
-    line-height: 117px;
+    font-size: 50px;
 }
 
 .FeedLayout-AppName-icon{
-    font-size: 115px;
+    font-size: 60px;
 }
 
 .FeedLayout-content{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.FeedLayout-Logout{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    color:#4960F4;
+
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.FeedLayout-Logout-icon{
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.FeedLayout-leftPanel-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 20px;
 }
