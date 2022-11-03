@@ -33,9 +33,7 @@ export const login = (
     password
 ) => new Promise((resolve, reject) => {
 
-    resolve(true)
-
-    /*Axios.post(`${process.env.REACT_APP_API_URL_V1}/auth`,
+    Axios.post(`${process.env.REACT_APP_API_URL_V1}/auth`,
         {
             "username": username,
             "password": password
@@ -46,5 +44,5 @@ export const login = (
         })
         .catch(err => {
             reject(false);
-        })*/
+        })
 });
