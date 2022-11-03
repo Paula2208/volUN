@@ -33,18 +33,15 @@ export const login = (
     password
 ) => new Promise((resolve, reject) => {
 
-    resolve(true)
-
-    /*Axios.post(`${process.env.REACT_APP_API_URL_V1}/auth`,
+    Axios.post(`${process.env.REACT_APP_API_URL_V1}/auth`,
         {
             "username": username,
             "password": password
         })
         .then((results) => {
-            console.log('PAU LOGIN USER',results); //@audit
-            resolve(true); //@audit por ahora :c hay que cambiar el backend por booleanos
+            resolve(results.data || false);
         })
         .catch(err => {
             reject(false);
-        })*/
+        })
 });
