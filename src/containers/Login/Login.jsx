@@ -33,7 +33,7 @@ function Login(props) {
           navigate("/app");
         }
         else{
-          toast.error("No user found.");
+          toast.error("User incorrect. Please check your credentials or create an account.");
         }
       })
       .catch(console.error);

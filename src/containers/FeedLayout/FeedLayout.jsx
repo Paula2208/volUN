@@ -23,6 +23,64 @@ function FeedLayout(props) {
 
                 <div className="FeedLayout-ModalFilters">
 
+                    <div>
+                        <span>Categories</span>
+
+                        <div>
+                            <div className="FeedLayout-Category-Container">
+                                <span>Teaching & Learning</span>
+                            </div>
+
+                            <div className="FeedLayout-Category-Container">
+                                <span>Health & Wellness</span>
+                            </div>
+
+                            <div className="FeedLayout-Category-Container">
+                                <span>Social Assistance</span>
+                            </div>
+
+                            <div className="FeedLayout-Category-Container">
+                                <span>Humanitarian Aid</span>
+                            </div>
+
+                            <div className="FeedLayout-Category-Container">
+                                <span>Ambiental Help</span>
+                            </div>
+
+                            <div className="FeedLayout-Category-Container">
+                                <span>Sport Support</span>
+                            </div>
+
+                            <div className="FeedLayout-Category-Container">
+                                <span>Animals Care</span>
+                            </div>
+
+                            <div className="FeedLayout-Category-Container">
+                                <span>Make Culture</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span>Information</span>
+
+                        <div>
+                            <div className="FeedLayout-Info-Container">
+                                <span>Org</span>
+                            </div>
+
+                            <div className="FeedLayout-Info-Container">
+                                <span>Date</span>
+                            </div>
+
+                            <div className="FeedLayout-Info-Container">
+                                <span>Time</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button className="FeedLayout-Btn-Filter">Filter</button>
+
                 </div>
 
                 <div 
