@@ -1,0 +1,94 @@
+.Login-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 80%;
+}
+
+.Login-inputs-complete{
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.Login-forgot-link{
+    color: #ffffff;
+    width: fit-content;
+    font-family: 'Roboto';
+    font-size: 22px;
+    font-weight: 100;
+    margin-top: 10px;
+}
+
+.Login-input{
+    color: #ffffff;
+    background-color: transparent;
+    border: 0;
+    width: 460px;
+    padding-left: 10px;
+    font-size: 18px;
+    font-weight: 100;
+    font-family: 'Roboto';
+    outline:none;
+}
+
+.Login-input::placeholder {
+    color: #ffffff;
+}
+
+.Login-input-line{
+    width: 470px;
+    height: 0px;
+    border: 1px solid #4960F4;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.line-more{
+    margin-bottom: 50px;
+}
+
+.Login-buttons{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    justify-content: space-between;
+    gap: 80px;
+}
+
+.Login-btn-login{
+    box-sizing: border-box;
+    width: 110px;
+    height: 50px;
+
+    background: #4960F4;
+    border: 3px solid #4960F4;
+    border-radius: 50px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 27px;
+
+    color: #000F73;
+}
+
+.Login-btn-signup{
+    box-sizing: border-box;
+    width: 110px;
+    height: 50px;
+
+    background: transparent;
+    border: 3px solid #4960F4;
+    border-radius: 50px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+
+    color: #4960F4;
+}
