@@ -39,7 +39,8 @@ export const login = (
             "password": password
         })
         .then((results) => {
-            resolve(results.data || false);
+            
+            resolve(results.data); 
         })
         .catch(err => {
             reject(false);
