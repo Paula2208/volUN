@@ -6,12 +6,13 @@ import { toast } from 'react-toastify';
 
 function Login(props) {
 
-  const {setIsLogged} = props;
+  const {setIsLogged} = props
 
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -26,15 +27,17 @@ function Login(props) {
       return
     }
 
-    login(username, password)
+    setLoading(true);
+
+    login(username, password, setIsLogged)
       .then((results) => {
         if (results === true) {
-          setIsLogged(true);
           navigate("/app");
         }
         else{
           toast.error("User incorrect. Please check your credentials or create an account.");
         }
+        setLoading(false);
       })
       .catch(console.error);
   }
@@ -66,7 +69,11 @@ function Login(props) {
                 onClick={handleLogin}
                 
         >
-          Login
+          { loading
+            ? (
+              <div className='spinner'></div>
+            ) : ('Login')
+          }
         </button>
         <button className="Login-btn-signup pointer"
                onClick={() => navigate("/signup")}

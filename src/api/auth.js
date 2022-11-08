@@ -20,8 +20,13 @@ export const createUser = (
             accountType: accountType
         })
         .then((results) => {
-            console.log('PAU CREATE USER',results); //@audit
-            resolve(true);
+
+            if(results.status === 200){
+                resolve(true);
+            }
+            else{
+                resolve(false);
+            }
         })
         .catch(err => {
             reject(false);
@@ -30,7 +35,8 @@ export const createUser = (
 
 export const login = (
     username,
-    password
+    password,
+    setIsLogged
 ) => new Promise((resolve, reject) => {
     
     Axios.post(`${process.env.REACT_APP_API_URL_V1}/auth`,
@@ -39,8 +45,14 @@ export const login = (
             "password": password
         })
         .then((results) => {
-            
+            if(results.data === true){
+                setIsLogged(true);
+                localStorage.setItem('logged', true);
+                localStorage.setItem('username', username);
+            }
+
             resolve(results.data); 
+            return;
         })
         .catch(err => {
             reject(false);

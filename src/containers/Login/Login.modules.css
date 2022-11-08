@@ -42,7 +42,7 @@
 .Login-input-line{
     width: 470px;
     height: 0px;
-    border: 1px solid #4960F4;
+    border: 1px solid var(--blue-lavanda);
     margin-bottom: 20px;
     margin-top: 5px;
 }
@@ -64,8 +64,8 @@
     width: 110px;
     height: 50px;
 
-    background: #4960F4;
-    border: 3px solid #4960F4;
+    background: var(--blue-lavanda);
+    border: 3px solid var(--blue-lavanda);
     border-radius: 50px;
 
     font-family: 'Roboto';
@@ -73,7 +73,11 @@
     font-weight: 700;
     font-size: 27px;
 
-    color: #000F73;
+    color: var(--blue-dark);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .Login-btn-signup{
@@ -82,7 +86,7 @@
     height: 50px;
 
     background: transparent;
-    border: 3px solid #4960F4;
+    border: 3px solid var(--blue-lavanda);
     border-radius: 50px;
 
     font-family: 'Roboto';
@@ -90,5 +94,5 @@
     font-weight: 700;
     font-size: 25px;
 
-    color: #4960F4;
+    color: var(--blue-lavanda);
 }
