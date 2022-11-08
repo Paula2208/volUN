@@ -30,7 +30,7 @@
     max-height:100vh;
     width: 100%;
     margin-top: 10px;
-    gap: 5px;
+    gap: 10px;
 }
 
 .FeedLayout-Logout{
@@ -362,4 +362,49 @@
     font-size: 30px;
     line-height: 30px;
     color: var(--blue-lavanda);
+}
+
+.FeedLayout-startPost{
+    box-sizing: border-box;
+
+    width: 270px;
+    height: 80px;
+
+    border: 3px solid var(--blue-lavanda);
+    border-radius: 40px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    justify-content: space-between;
+    
+    padding: 20px;
+}
+
+.FeedLayout-startPost-Icon{
+    font-style: normal;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 40px;
+    color: var(--blue-lavanda);
+}
+
+.FeedLayout-startPost-lavanda{
+    box-sizing: border-box;
+    width: 176px;
+    height: 50px;
+
+    background: var(--blue-lavanda);
+    border: 3px solid var(--blue-lavanda);
+    border-radius: 50px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 25px;
+
+    padding-top: 6px;
+
+    color: var(--blue-dark);
 }

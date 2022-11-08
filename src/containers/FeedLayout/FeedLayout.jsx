@@ -3,12 +3,14 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { FaHandshake, FaBook, FaHeart, FaUsers, FaHands, FaLeaf, FaVolleyballBall, FaPaw, FaPaintBrush, FaCalendar, FaClock } from "react-icons/fa"
 import { FiLogOut } from "react-icons/fi";
 import { CgOrganisation } from "react-icons/cg";
+import {MdPostAdd} from "react-icons/md";
 import React, { useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from 'react-time-picker';
 import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
+import ModalCreatePost from '../../components/createPost/ModalCreatePost';
 
 export const getTimeNow = () => {
     const date = new Date();
@@ -17,7 +19,7 @@ export const getTimeNow = () => {
 
 function FeedLayout(props) {
 
-    const {userType, setUserType, setIsLogged} = props;
+    const {userType, setUserType, setIsLogged, setPosts} = props;
 
     const navigate = useNavigate();
 
@@ -37,6 +39,7 @@ function FeedLayout(props) {
     const[organizations, setOrganizations] = useState([{name: 'organization 1', username: 'org1'},{name: 'organization 2', username: 'org2'}]); //@todo
 
     const[loaddingPosts, setLoaddingPosts] = useState(false);
+    const[showCreateModal, setShowCreateModal] = useState(false);
 
     const getOptions = () => ( //@audit
         <>
@@ -57,6 +60,10 @@ function FeedLayout(props) {
 
     const filterPost = () => {
         setLoaddingPosts(true);
+    }
+
+    const handleCloseModal = () => {
+        setShowCreateModal(false);
     }
 
     return (
@@ -214,9 +221,32 @@ function FeedLayout(props) {
             </div>
             
             <div className="FeedLayout-content">
+                <div className="FeedLayout-header">
+                    {(userType !== 'VOLUNTEER') && (
+                        <div 
+                            className="FeedLayout-startPost pointer"
+                            onClick={()=> setShowCreateModal(true)}
+                        >
+                            <MdPostAdd className="FeedLayout-startPost-Icon"/>
+                            <div className="FeedLayout-startPost-lavanda">
+                                Start a Post
+                            </div>
+                        </div>
+                    )}
+
+                    {(userType === 'ADMIN') && (
+                        <div className="FeedLayout-statisticsButton">
+                            {/*@todo para el sprint 3 */}
+                        </div>
+                    )}
+                </div>
+
                 {(loaddingPosts) && (<div className='spinner lavanda'></div>)}
+
                 <Outlet />
             </div>
+
+            {(showCreateModal) && (<ModalCreatePost  show={showCreateModal} handleClose={handleCloseModal}/>)}
 
         </div>
     );
