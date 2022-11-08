@@ -5,12 +5,10 @@ import { FiLogOut } from "react-icons/fi";
 import { CgOrganisation } from "react-icons/cg";
 import {MdPostAdd} from "react-icons/md";
 import React, { useState } from 'react';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import TimePicker from 'react-time-picker';
-import "react-time-picker/dist/TimePicker.css";
-import "react-clock/dist/Clock.css";
 import ModalCreatePost from '../../components/createPost/ModalCreatePost';
+
+import TimePicker from 'react-time-picker';
+import DatePicker from "react-datepicker";
 
 export const getTimeNow = () => {
     const date = new Date();
