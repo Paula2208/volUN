@@ -6,7 +6,7 @@
 .FeedLayout-AppName{
     display: flex;
     flex-direction:row;
-    color:#4960F4;
+    color: var(--blue-lavanda);
     justify-content: center;
     gap: 10px;
 }
@@ -26,13 +26,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    max-height:100vh;
+    width: 100%;
+    margin-top: 10px;
+    gap: 5px;
 }
 
 .FeedLayout-Logout{
     display: flex;
     flex-direction: row;
     gap: 10px;
-    color:#4960F4;
+    color:var(--blue-lavanda);
+
+    margin-bottom: 20px;
 
     font-size: 24px;
     font-weight: 700;
@@ -47,6 +54,312 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 10px;
+}
 
-    padding: 20px;
+.FeedLayout-ModalFilters{
+    box-sizing: border-box;
+    width: 278px;
+    height: fit-content;
+
+    background: var(--blue-dark);
+    border: 3px solid var(--blue-lavanda);
+    border-radius: 0px 50px 50px 0px;
+
+    margin: 10px 0px 15px 0px;
+    padding: 15px 0px 15px 0px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.FeedLayout-Span{
+    width: 124px;
+    height: 29px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 29px;
+
+    margin-left: 10px;
+
+    color: var(--blue-lavanda);
+}
+
+.FeedLayout-line{
+    width: 150px;
+    height: 0px;
+    border: 2px solid var(--blue-lavanda);
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.FeedLayout-Data-Container{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.FeedLayout-Btn-Filter{
+    box-sizing: border-box;
+    width: 100px;
+    height: 40px;
+
+    background: var(--blue-lavanda);
+    border: 3px solid var(--blue-lavanda);
+    border-radius: 50px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 27px;
+
+    color: var(--blue-dark);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.FeedLayout-Categories{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.FeedLayout-Category-Container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+.FeedLayout-Category-Container span{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+
+    color: #FFFFFF;
+}
+
+.FeedLayout-Category{
+    box-sizing: border-box;
+    width: 50px;
+    height: 50px;
+
+    background: var(--blue-dark);
+    border: 1px solid;
+    border-radius: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.FeedLayout-Category.inactive{
+    border-color: var(--blue-lavanda);
+    color: var(--blue-lavanda);
+}
+
+.FeedLayout-Category:hover, .FeedLayout-Category.active{
+    color: var(--blue-dark);
+}
+
+.FeedLayout-Category.teach:hover, .FeedLayout-Category.teach.active{
+    border-color: var(--teach);
+    background: var(--teach);
+}
+
+.FeedLayout-Category.heart:hover, .FeedLayout-Category.heart.active{
+    border-color: var(--heart);
+    background: var(--heart);
+}
+
+.FeedLayout-Category.users:hover, .FeedLayout-Category.users.active{
+    border-color: var(--users);
+    background: var(--users);
+}
+
+.FeedLayout-Category.hands:hover, .FeedLayout-Category.hands.active{
+    border-color: var(--hands);
+    background: var(--hands);
+}
+
+.FeedLayout-Category.leaf:hover, .FeedLayout-Category.leaf.active{
+    border-color: var(--leaf);
+    background: var(--leaf);
+}
+
+.FeedLayout-Category.ball:hover, .FeedLayout-Category.ball.active{
+    border-color: var(--ball);
+    background: var(--ball);
+}
+
+.FeedLayout-Category.paw:hover, .FeedLayout-Category.paw.active{
+    border-color: var(--paw);
+    background: var(--paw);
+}
+
+.FeedLayout-Category.paint:hover, .FeedLayout-Category.paint.active{
+    border-color: var(--paint);
+    background: var(--paint);
+}
+
+.FeedLayout-Category-Icon{
+    font-style: normal;
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 30px;
+}
+
+.FeedLayout-Info-Container{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-left: 30px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+
+    color: #FFFFFF;
+}
+
+.FeedLayout-Input{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.FeedLayout-input-line{
+    height: 0px;
+    border: 1px solid var(--blue-lavanda);
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.FeedLayout-input-line.minus{
+    margin-bottom: 0px !important;
+}
+
+.FeedLayout-input-line.org{
+    width: 160px;
+}
+
+.FeedLayout-input-line.date{
+    width: 120px;
+}
+
+.FeedLayout-input-line.time{
+    width: 100px;
+}
+
+.FeedLayout-Input select {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    color: #ffffff;
+    width: 160px;
+}
+
+.FeedLayout-Input select:focus{ 
+    outline: none;
+}
+
+.FeedLayout-Input-datePicker {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    color: #ffffff;
+    width: 160px !important;
+    padding: 0px !important;
+    display: flex !important;
+}
+
+.FeedLayout-Input-datePicker:focus{ 
+    outline: none;
+}
+
+.react-datepicker__header{
+    background-color: var(--blue-dark) !important;
+    border-bottom: 2px solid var(--blue-lavanda) !important;
+}
+
+.react-datepicker__triangle::after{
+    border-top-color: var(--blue-lavanda) !important;
+}
+
+.react-datepicker__day-name,.react-datepicker__current-month, 
+.react-datepicker__day, .react-datepicker__time-name{
+    color: #FFFFFF !important;
+}
+
+.react-datepicker__day:hover{
+    background-color: var(--blue-violent) !important;
+}
+
+.react-datepicker__day--selected{
+    background-color: var(--blue-lavanda) !important;
+}
+
+.react-datepicker{
+    background-color: var(--blue-dark) !important;
+    border: 2px solid var(--blue-lavanda) !important;
+}
+
+.FeedLayout-Input-timePicker {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    color: #ffffff !important;
+    width: 160px !important;
+    padding: 0px !important;
+    display: flex !important;
+}
+
+.FeedLayout-Input-timePicker select{
+    width: 48px !important;
+    color: #ffffff;
+}
+
+.FeedLayout-Input-timePicker input{
+    color: #ffffff;
+}
+
+.FeedLayout-Input-timePicker input:focus{
+    outline: none;
+}
+
+.react-time-picker__wrapper{
+    border: 0px !important;
+}
+
+.react-time-picker__clock {
+    display: none;
+}
+
+.react-time-picker__button{
+    display: none;
+}
+
+.react-time-picker__inputGroup{
+    flex-grow: 0 !important;
+}
+
+.FeedLayout-Info-Icon{
+    font-style: normal;
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 30px;
+    color: var(--blue-lavanda);
 }
