@@ -83,3 +83,27 @@
       transform: rotate(360deg);
   }
 }
+
+.modal-content {
+  color: #FFFFFF !important;
+  background-color: var(--blue-dark) !important;
+  border: 1px solid !important;
+}
+
+.modal-header {
+  justify-content: center !important;
+  border-bottom: 0px solid !important;
+  border-top-right-radius: 60px !important;
+  border-top-left-radius: 60px !important;
+}
+
+.modal-header .btn-close{
+  display: none !important;
+}
+
+.modal-footer {
+  justify-content: center !important;
+  border-top: 0px solid !important;
+  border-bottom-right-radius: 60px !important;
+  border-bottom-left-radius: 60px !important;
+}
