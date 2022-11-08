@@ -1,0 +1,12 @@
+.ModalCreatePost-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+
+    box-sizing: border-box;
+    width: 100%;
+
+    margin-right: 20px;
+    height: 100%;
+}
