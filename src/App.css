@@ -1,6 +1,24 @@
+:root{
+  --blue-black:#020A40;
+  --blue-dark: #000F73;
+  --blue-gray: #222D73;
+  --blue-general: #001ABF;
+  --blue-violent: #0020F2;
+  --blue-lavanda:#4960F4;
+
+  --teach: #FFF386;
+  --heart: #1CBBFF;
+  --users: #C9D2F2;
+  --hands: #FF4F4F;
+  --leaf: #44D18D;
+  --ball: #C5BBFF;
+  --paw: #FF9A3D;
+  --paint: #FF69F0;
+}
+
 .App {
   text-align: center;
-  background-color: #020A40;
+  background-color: var(--blue-black);
 }
 
 .App-logo {
@@ -39,5 +57,29 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border-left-color: var(--blue-black);
+
+  animation: spin 1s ease infinite;
+}
+
+.spinner.lavanda {
+  border-left-color: var(--blue-lavanda) !important;
+}
+
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+
+  100% {
+      transform: rotate(360deg);
   }
 }

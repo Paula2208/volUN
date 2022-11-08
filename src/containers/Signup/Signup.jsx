@@ -10,13 +10,15 @@ function Signup() {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [cellphoneNumber, setCellphoneNumber] = useState('');
-    const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     const [accountType, setAccountType] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
     const handleCreate = (e) => {
+
         if(name === ''){
             toast.error("Please add a name");
             return
@@ -32,7 +34,7 @@ function Signup() {
             return
         }
 
-        if(cellphoneNumber){
+        if(cellphoneNumber===''){
             toast.error("Please add a cellphoneNumber");
             return
         }
@@ -52,11 +54,18 @@ function Signup() {
             return
         }
 
+        setLoading(true);
+
         createUser(name, lastName, email, cellphoneNumber, username, password, accountType)
             .then((results) => {
                 if (results === true) {
                     toast.success("User created!");
                     navigate("../");
+                    setLoading(false);
+                }
+                else{
+                    toast.success("Error creating user. Try again later!");
+                    setLoading(false);
                 }
             })
             .catch(console.error)
@@ -67,6 +76,7 @@ function Signup() {
         setLastName('');
         setEmail('');
         setCellphoneNumber('');
+        setUsername('');
         setPassword('');
         setAccountType('');
         navigate("../");

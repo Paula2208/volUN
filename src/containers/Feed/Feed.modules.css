@@ -1,5 +1,27 @@
-.Feed{
+.Feed-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
     color: white;
+
+    box-sizing: border-box;
+    width: 100%;
+
+    margin-right: 20px;
+    height: 100%;
 }
+
+.Feed-Scroll-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0px, 370px));
+    justify-content: center;
+    gap: 5px;
+    overflow: scroll;
+    width: 100%;
+}
+
+/*.Feed-Scroll-container h1{
+    width: 370px;
+    height: 370px;
+    margin-top: 0px !important;
+} NO BORRAR*/

@@ -6,10 +6,11 @@ import Feed from '../containers/Feed/Feed'
 import Login from '../containers/Login/Login'
 import Signup from '../containers/Signup/Signup'
 import ForgotPassword from '../containers/ForgotPassword/ForgotPassword'
+import { useEffect } from 'react';
 
 function Roots() {
-    const [isLogged, setIsLogged] = useState(false);
     const [userType, setUserType] = useState('VOLUNTEER');
+    const [isLogged, setIsLogged] = useState(localStorage.getItem('logged') === 'true');
 
     if(!isLogged){
         return(
@@ -30,6 +31,7 @@ function Roots() {
                 <Route index element={<Feed />}/>
                 <Route path="*" element={<Navigate to="/app" />}/>
             </Route>
+            <Route path="*" element={<Navigate to="/app" />}/>
         </Routes>
     );
 }
