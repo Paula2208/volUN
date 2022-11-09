@@ -1,13 +1,11 @@
 import Axios from 'axios';
 
-export const functionTemplate = () => new Promise((resolve, reject) => {
+export const getOfertas = () => new Promise((resolve, reject) => {
 
-    Axios.post(`${process.env.REACT_APP_API_URL_V1}/`, //add route and change method
-        {}) //add or delete body
-        .then((results) => {
-            
-        })
-        .catch(err => {
-            
-        })
+    Axios.get(`${process.env.REACT_APP_API_URL_V1}/offers/get`).then((response) => {
+        console.log(response);
+    });
 });
+
+            
+
