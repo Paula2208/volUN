@@ -132,7 +132,7 @@ function Post(props) {
 
             </div>
 
-            {(showSeePost) && (<ModalSeePost post={post} show={showSeePost} handleClose={handleCloseModal} />)}
+            {(showSeePost) && (<ModalSeePost userType={userType} post={post} show={showSeePost} handleClose={handleCloseModal} />)}
         </>
     );
 }

@@ -1,12 +1,161 @@
 .ModalSeePost-container{
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     justify-content: center;
     color: white;
 
     box-sizing: border-box;
-    width: 100%;
+    width: 570px !important;
+    height: 693px !important;
+}
 
-    margin-right: 20px;
-    height: 100%;
+.ModalSeePost-Apply-btn{
+    box-sizing: border-box !important;
+    width: 100px !important;
+    height: 40px !important;
+
+    border-radius: 50px !important;
+
+    font-family: 'Roboto' !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 20px !important;
+
+    color: var(--blue-dark) !important;
+    
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;  
+}
+
+.ModalSeePost-Apply-btn.any{
+    background: var(--blue-lavanda);
+    border: 3px solid var(--blue-lavanda);
+}
+
+.ModalSeePost-Apply-btn.any:hover{
+    background: var(--paint);
+    border: 3px solid var(--paint);
+}
+
+.ModalSeePost-Apply-btn.pending{
+    background: var(--teach);
+    border: 3px solid var(--teach);
+}
+
+.ModalSeePost-Apply-btn.going{
+    background: var(--leaf);
+    border: 3px solid var(--leaf);
+    width: 120px !important;
+}
+
+.ModalSeePost-header{
+    width: 570px !important;
+    height: 380px !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between !important;
+    padding: 0px 0px 0px 0px !important;
+}
+
+.ModalSeePost-image{
+    width: 572px ;
+    height: 380px ;
+    object-fit: cover;
+    border-radius: 70px;
+    box-sizing:content-box !important;
+}
+
+.ModalSeePost-image.teach{
+    border: 3px solid var(--teach);
+}
+
+.ModalSeePost-image.heart{
+    border: 3px solid var(--heart);
+}
+
+.ModalSeePost-image.users{
+    border: 3px solid var(--users);
+}
+
+.ModalSeePost-image.hands{
+    border: 3px solid var(--hands);
+}
+
+.ModalSeePost-image.leaf{
+    border: 3px solid var(--leaf);
+}
+
+.ModalSeePost-image.ball{
+    border: 3px solid var(--ball);
+}
+
+.ModalSeePost-image.paw{
+    border: 3px solid var(--paw);
+}
+
+.ModalSeePost-image.paint{
+    border: 3px solid var(--paint);
+}
+
+.ModalSeePost-body{
+    width: 570px !important;
+    height: 193px !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between !important;
+    padding: 0px 40px 0px 40px !important;
+}
+
+.ModalSeePost-footer{
+    width: 570px !important;
+    height:  120px !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between !important;
+    padding: 0px 40px 0px 40px !important;
+}
+
+.modal-content{
+    border: 0px !important;
+}
+
+.modal-color.teach{
+    border: 3px solid var(--teach);
+    border-radius: 70px;
+}
+
+.modal-color.heart{
+    border: 3px solid var(--heart);
+    border-radius: 70px;
+}
+
+.modal-color.users{
+    border: 3px solid var(--users);
+    border-radius: 70px;
+}
+
+.modal-color.hands{
+    border: 3px solid var(--hands);
+    border-radius: 70px;
+}
+
+.modal-color.leaf{
+    border: 3px solid var(--leaf);
+    border-radius: 70px;
+}
+
+.modal-color.ball{
+    border: 3px solid var(--ball);
+    border-radius: 70px;
+}
+
+.modal-color.paw{
+    border: 3px solid var(--paw);
+    border-radius: 70px;
+}
+
+.modal-color.paint{
+    border: 3px solid var(--paint);
+    border-radius: 70px;
 }
