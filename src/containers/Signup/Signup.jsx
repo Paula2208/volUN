@@ -39,13 +39,13 @@ function Signup() {
             return
         }
 
-        if(password === ''){
-            toast.error("Please add a password");
+        if(username === ''){
+            toast.error("Please add a username");
             return
         }
 
-        if(username === ''){
-            toast.error("Please add a username");
+        if(password === ''){
+            toast.error("Please add a password");
             return
         }
 
