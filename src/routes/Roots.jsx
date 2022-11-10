@@ -19,7 +19,9 @@ function Roots() {
             date: 'Nov 30 - 2022',
             time: '12:30',
             location: 'instituto canino',
-            status: 'any'
+            status: 'any',
+            org: 'Fundación Patitas',
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
         {
             post_id: '123452',
@@ -29,7 +31,9 @@ function Roots() {
             date: 'Nov 30 - 2022',
             time: '12:30',
             location: 'instituto canino',
-            status: 'any'
+            status: 'any',
+            org: 'Fundación Patitas',
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
         {
             post_id: '123453',
@@ -39,7 +43,9 @@ function Roots() {
             date: 'Nov 30 - 2022',
             time: '12:30',
             location: 'instituto canino',
-            status: 'pending'
+            status: 'pending',
+            org: 'Fundación Patitas',
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
         {
             post_id: '123454',
@@ -49,7 +55,9 @@ function Roots() {
             date: 'Nov 30 - 2022',
             time: '12:30',
             location: 'instituto canino',
-            status: 'going'
+            status: 'going',
+            org: 'Fundación Patitas',
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
         {
             post_id: '123451',
@@ -59,7 +67,9 @@ function Roots() {
             date: 'Nov 30 - 2022',
             time: '12:30',
             location: 'instituto canino',
-            status: 'any'
+            status: 'any',
+            org: 'Fundación Patitas',
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
         {
             post_id: '123452',
@@ -69,7 +79,9 @@ function Roots() {
             date: 'Nov 30 - 2022',
             time: '12:30',
             location: 'instituto canino',
-            status: 'going'
+            status: 'going',
+            org: 'Fundación Patitas',
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
         {
             post_id: '123453',
@@ -79,7 +91,9 @@ function Roots() {
             date: 'Nov 30 - 2022',
             time: '12:30',
             location: 'instituto canino',
-            status: 'pending'
+            status: 'pending',
+            org: 'Fundación Patitas',
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
         {
             post_id: '123454',
@@ -89,7 +103,9 @@ function Roots() {
             date: 'Nov 30 - 2022',
             time: '12:30',
             location: 'instituto canino',
-            status: 'any'
+            status: 'any',
+            org: 'Fundación Patitas',
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         }
     ]); //must to be []
 

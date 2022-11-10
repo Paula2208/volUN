@@ -1,12 +1,327 @@
 .ModalSeePost-container{
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     justify-content: center;
     color: white;
 
     box-sizing: border-box;
-    width: 100%;
+    width: 570px !important;
+    height: 693px !important;
+}
 
-    margin-right: 20px;
-    height: 100%;
+.ModalSeePost-btn{
+    display: flex ;
+    flex-direction: row;
+    gap: 25px;
+}
+
+.ModalSeePost-Apply-btn{
+    box-sizing: border-box !important;
+    width: 100px !important;
+    height: 40px !important;
+
+    border-radius: 50px !important;
+
+    font-family: 'Roboto' !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 20px !important;
+
+    color: var(--blue-dark) !important;
+    
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;  
+}
+
+.ModalSeePost-Admin-btn{
+    box-sizing: border-box !important;
+    width: 110px !important;
+    height: 50px !important;
+    border-radius: 50px !important;
+
+    font-family: 'Roboto' !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 25px !important;
+}
+
+.ModalSeePost-Admin-btn.delete{
+    background: transparent !important;
+    border: 3px solid var(--blue-lavanda) !important;
+    color: var(--blue-lavanda) !important;
+}
+
+.ModalSeePost-Admin-btn.update{
+    background: var(--blue-lavanda);
+    border: 3px solid var(--blue-lavanda);
+    color: var(--blue-dark) !important;
+}
+
+.ModalSeePost-Apply-btn.any{
+    background: var(--blue-lavanda);
+    border: 3px solid var(--blue-lavanda);
+}
+
+.ModalSeePost-Apply-btn.any:hover{
+    background: var(--paint);
+    border: 3px solid var(--paint);
+}
+
+.ModalSeePost-Apply-btn.pending{
+    background: var(--teach);
+    border: 3px solid var(--teach);
+}
+
+.ModalSeePost-Apply-btn.going{
+    background: var(--leaf);
+    border: 3px solid var(--leaf);
+    width: 120px !important;
+}
+
+.ModalSeePost-header{
+    width: 570px !important;
+    height: 380px !important;
+    align-items: flex-start !important;
+    padding: 0px 0px 0px 0px !important;
+}
+
+.ModalSeePost-image{
+    width: 565px ;
+    height: 352px ;
+    object-fit: cover;
+    box-sizing:content-box !important;
+    margin-top: -2px;
+
+    border-radius: 70px 70px 70px 0px;
+}
+
+.ModalSeePost-image.teach{
+    border: 3px solid var(--teach);
+}
+
+.ModalSeePost-image.heart{
+    border: 3px solid var(--heart);
+}
+
+.ModalSeePost-image.users{
+    border: 3px solid var(--users);
+}
+
+.ModalSeePost-image.hands{
+    border: 3px solid var(--hands);
+}
+
+.ModalSeePost-image.leaf{
+    border: 3px solid var(--leaf);
+}
+
+.ModalSeePost-image.ball{
+    border: 3px solid var(--ball);
+}
+
+.ModalSeePost-image.paw{
+    border: 3px solid var(--paw);
+}
+
+.ModalSeePost-image.paint{
+    border: 3px solid var(--paint);
+}
+
+.ModalSeePost-body{
+    width: 570px !important;
+    height: fit-content !important;
+    max-height: 193px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between !important;
+    padding: 0px 40px 0px 40px !important;
+}
+
+.ModalSeePost-body h1{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 59px;
+
+    color: var(--blue-lavanda);
+}
+
+.ModalSeePost-body h2{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 35px;
+
+    color: var(--blue-lavanda);
+}
+
+.ModalSeePost-body span{
+    overflow: scroll;
+}
+
+.ModalSeePost-footer{
+    width: 570px !important;
+    height:  120px !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between !important;
+    padding: 0px 40px 0px 40px !important;
+}
+
+.modal-content{
+    border: 0px !important;
+}
+
+.modal-color.teach{
+    border: 3px solid var(--teach);
+    border-radius: 70px;
+}
+
+.modal-color.heart{
+    border: 3px solid var(--heart);
+    border-radius: 70px;
+}
+
+.modal-color.users{
+    border: 3px solid var(--users);
+    border-radius: 70px;
+}
+
+.modal-color.hands{
+    border: 3px solid var(--hands);
+    border-radius: 70px;
+}
+
+.modal-color.leaf{
+    border: 3px solid var(--leaf);
+    border-radius: 70px;
+}
+
+.modal-color.ball{
+    border: 3px solid var(--ball);
+    border-radius: 70px;
+}
+
+.modal-color.paw{
+    border: 3px solid var(--paw);
+    border-radius: 70px;
+}
+
+.modal-color.paint{
+    border: 3px solid var(--paint);
+    border-radius: 70px;
+}
+
+.ModalSeePost-category{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.ModalSeePost-category-container{
+    position: absolute;
+    left: 0px;
+    top: 307px;
+
+    box-sizing: border-box;
+    width: 295px;
+    height: 52px;
+
+    background: var(--blue-dark);
+    border-width: 3px 3px 0px 3px;
+    border-style: solid;
+    border-radius: 0px 50px 0px 0px;
+
+    display: flex;
+    align-items: center;
+}
+
+.ModalSeePost-category-container.teach{
+    border-color: var(--teach);
+}
+
+.ModalSeePost-category-container.heart{
+    border-color: var(--heart);
+}
+
+.ModalSeePost-category-container.users{
+    border-color: var(--users);
+}
+
+.ModalSeePost-category-container.hands{
+    border-color: var(--hands);
+}
+
+.ModalSeePost-category-container.leaf{
+    border-color: var(--leaf);
+}
+
+.ModalSeePost-category-container.ball{
+    border-color: var(--ball);
+}
+
+.ModalSeePost-category-container.paw{
+    border-color: var(--paw);
+}
+
+.ModalSeePost-category-container.paint{
+    border-color: var(--paint);
+}
+
+.ModalSeePost-category-icon{
+    font-style: normal;
+    font-weight: 900;
+    font-size: 35px;
+    line-height: 35px;
+}
+
+.ModalSeePost-category-title{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 35px;
+}
+
+.ModalSeePost-category-title.little{
+    font-size: 25px !important;
+}
+
+.ModalSeePost-category.teach{
+    color: var(--teach);
+}
+
+.ModalSeePost-category.heart{
+    color: var(--heart);
+}
+
+.ModalSeePost-category.users{
+    color: var(--users);
+}
+
+.ModalSeePost-category.hands{
+    color: var(--hands);
+}
+
+.ModalSeePost-category.leaf{
+    color: var(--leaf);
+}
+
+.ModalSeePost-category.ball{
+    color: var(--ball);
+}
+
+.ModalSeePost-category.paw{
+    color: var(--paw);
+}
+
+.ModalSeePost-category.paint{
+    color: var(--paint);
 }

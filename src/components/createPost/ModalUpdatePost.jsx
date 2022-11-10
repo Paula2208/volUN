@@ -8,21 +8,19 @@ import DatePicker from "react-datepicker";
 import { getTimeNow } from "../../containers/FeedLayout/FeedLayout";
 import { toast } from 'react-toastify';
 
-function ModalCreatePost(props) {
+function ModalUpdatePost(props) {
 
-    const { show, handleClose } = props;
+    const { show, handleClose, post, loaddingUpdate, setLoaddingUpdate } = props;
 
-    const [image, setImage] = useState(''); /*@todo */
-    const [title, setTitle] = useState('');
-    const [date, setDate] = useState(new Date());
-    const [time, setTime] = useState(getTimeNow());
-    const [location, setLocation] = useState('');
-    const [category, setCategory] = useState('');
-    const [description, setDescription] = useState('');
+    const [image, setImage] = useState(post.image || ''); /*@todo */
+    const [title, setTitle] = useState(post.title || '');
+    const [date, setDate] = useState( new Date()); /*@todo */
+    const [time, setTime] = useState(post.time || getTimeNow());
+    const [location, setLocation] = useState(post.location || '');
+    const [category, setCategory] = useState(post.category || '');
+    const [description, setDescription] = useState(post.description || '');
 
-    const [loaddingCreate, setLoaddingCreate] = useState(false);
-
-    const create = () => {
+    const update = () => {
 
         if (title === '') {
             toast.error('Please add a title.');
@@ -39,26 +37,19 @@ function ModalCreatePost(props) {
             return;
         }
 
-        setLoaddingCreate(true);
-        //reload after create
+        setLoaddingUpdate(true);
+        //reload after Update
     }
 
-    const cancel = () => {
-        setImage('');
-        setTitle('');
-        setDate(new Date());
-        setTime(getTimeNow());
-        setLocation('');
-        setCategory('');
+    const handleCloseModal = () => {
         handleClose();
-        setLoaddingCreate(false);
     }
 
     return (
         <Modal show={show} onHide={handleClose} centered>
             <div className="ModalCreatePost-border-container">
                 <Modal.Header closeButton>
-                    <Modal.Title>Create New Post</Modal.Title>
+                    <Modal.Title>Update Post</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="ModalCreatePost-container">
                     <div className="ModalCreatePost-image-container">
@@ -148,13 +139,13 @@ function ModalCreatePost(props) {
                     </div>
                 </Modal.Body>
                 <Modal.Footer className="ModalCreatePost-btn">
-                    <Button onClick={cancel} className="ModalCreatePost-btn-cancel">
+                    <Button onClick={handleCloseModal} className="ModalCreatePost-btn-cancel">
                         Cancel
                     </Button>
-                    <Button onClick={create} className="ModalCreatePost-btn-create">
-                        {loaddingCreate ? (
+                    <Button onClick={update} className="ModalCreatePost-btn-create">
+                        {loaddingUpdate ? (
                             <div className='spinner'></div>
-                        ) : ('Create')}
+                        ) : ('Update')}
                     </Button>
                 </Modal.Footer>
             </div>
@@ -162,4 +153,4 @@ function ModalCreatePost(props) {
     );
 }
 
-export default ModalCreatePost;
+export default ModalUpdatePost;
