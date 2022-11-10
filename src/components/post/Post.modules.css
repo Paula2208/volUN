@@ -74,7 +74,10 @@
     
     display: flex;
     justify-content: center;
-    align-items: center;  
+    align-items: center; 
+    
+    background: var(--blue-lavanda);
+    border: 3px solid var(--blue-lavanda);
 }
 
 .Post-Apply-btn.any{

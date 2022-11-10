@@ -49,7 +49,8 @@ function ModalCreatePost(props) {
             time: time,
             category: category,
             image: image,
-            nonProfitUsername: '', //@todo get user type and name endpoint
+            nonProfitUsername: localStorage.getItem('username') || '', 
+            nonProfitName: localStorage.getItem('nameUser') || '',
         })
         .then((results) => {
             if(results){

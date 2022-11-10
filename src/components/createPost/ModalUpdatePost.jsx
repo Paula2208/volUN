@@ -7,14 +7,15 @@ import TimePicker from 'react-time-picker';
 import DatePicker from "react-datepicker";
 import { getTimeNow } from "../../containers/FeedLayout/FeedLayout";
 import { toast } from 'react-toastify';
+import {updateOferta} from '../../api/offers';
 
 function ModalUpdatePost(props) {
 
-    const { show, handleClose, post, loaddingUpdate, setLoaddingUpdate } = props;
+    const { show, handleClose, post, loaddingUpdate, setLoaddingUpdate,reloadOffers } = props;
 
     const [image, setImage] = useState(post.image || ''); /*@todo */
     const [title, setTitle] = useState(post.title || '');
-    const [date, setDate] = useState( new Date()); /*@todo */
+    const [date, setDate] = useState((post.date) ? new Date(post.date): new Date());
     const [time, setTime] = useState(post.time || getTimeNow());
     const [location, setLocation] = useState(post.location || '');
     const [category, setCategory] = useState(post.category || '');
@@ -38,7 +39,27 @@ function ModalUpdatePost(props) {
         }
 
         setLoaddingUpdate(true);
-        //reload after Update
+        updateOferta(post.id,{
+            title: title,
+            description: description,
+            location: location,
+            date: date,
+            time: time,
+            category: category,
+            image: image,
+            nonProfitUsername: localStorage.getItem('username') || '', 
+            nonProfitName: localStorage.getItem('nameUser') || '',
+        })
+            .then((results) => {
+                if(results){
+                    toast.success('Post updated.');
+                    reloadOffers();
+                    handleClose();
+                }
+                else{
+                    toast.error('Error updating the post');
+                }
+            })
     }
 
     const handleCloseModal = () => {

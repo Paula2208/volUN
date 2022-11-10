@@ -81,6 +81,38 @@ function Post(props) {
         return <></>
     }
 
+    const getPostImageGeneral = () => {
+        switch (post.category) {
+          case "teach":
+            return "https://images.pexels.com/photos/3401403/pexels-photo-3401403.jpeg?auto=compress&cs=tinysrgb&w=800"
+            break;
+          case "heart":
+            return "https://images.pexels.com/photos/7475697/pexels-photo-7475697.jpeg?auto=compress&cs=tinysrgb&w=800"
+            break;
+          case "users":
+            return "https://images.pexels.com/photos/7345449/pexels-photo-7345449.jpeg?auto=compress&cs=tinysrgb&w=800"
+            break;
+          case "hands":
+            return "https://images.pexels.com/photos/6646989/pexels-photo-6646989.jpeg?auto=compress&cs=tinysrgb&w=800"
+            break;
+          case "leaf":
+            return "https://images.pexels.com/photos/7656138/pexels-photo-7656138.jpeg?auto=compress&cs=tinysrgb&w=800"
+            break;
+          case "ball":
+            return "https://images.pexels.com/photos/863977/pexels-photo-863977.jpeg?auto=compress&cs=tinysrgb&w=800"
+            break;
+          case "paw":
+            return "https://images.pexels.com/photos/6131165/pexels-photo-6131165.jpeg?auto=compress&cs=tinysrgb&w=800"
+            break;
+          case "paint":
+            return "https://images.pexels.com/photos/1507856/pexels-photo-1507856.jpeg?auto=compress&cs=tinysrgb&w=800"
+            break;
+          default:
+            return "https://images.pexels.com/photos/5340269/pexels-photo-5340269.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            break;
+        }
+      }
+
     const applyPost = () => {
         if(post.status === 'any'){
 
@@ -100,7 +132,7 @@ function Post(props) {
                 className="Post-container" id={post.post_id || ''}
             >
                 <img
-                    src={post.image || "https://images.pexels.com/photos/5340269/pexels-photo-5340269.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"}
+                    src={(post.image && post.image !== '') ? post.image : getPostImageGeneral()}
                     className="Post-image"
                 />
 
@@ -158,6 +190,7 @@ function Post(props) {
                 loaddingUpdate={loaddingUpdate}
                 setLoaddingUpdate={setLoaddingUpdate}
                 post={post}
+                reloadOffers={reloadOffers}
                 />
             )}
         </>
