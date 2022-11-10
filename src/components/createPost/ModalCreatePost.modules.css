@@ -182,6 +182,7 @@
     background: transparent;
 }
 
-.modal-content{
-    border: 3px solid var(--blue-dark) !important;
+.ModalCreatePost-border-container{
+    border: 3px solid var(--blue-lavanda);
+    border-radius: 70px;
 }

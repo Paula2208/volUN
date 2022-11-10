@@ -8,7 +8,7 @@ import Signup from '../containers/Signup/Signup'
 import ForgotPassword from '../containers/ForgotPassword/ForgotPassword'
 
 function Roots() {
-    const [userType, setUserType] = useState('ADMIN'); //must to be on 'VOLUNTEER'
+    const [userType, setUserType] = useState('VOLUNTEER'); //must to be on 'VOLUNTEER'
     const [isLogged, setIsLogged] = useState(localStorage.getItem('logged') === 'true');
     const [posts, setPosts] = useState([
         {

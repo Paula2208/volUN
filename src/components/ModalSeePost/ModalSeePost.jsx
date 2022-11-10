@@ -2,7 +2,8 @@ import './ModalSeePost.modules.css';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FaBook, FaHeart, FaUsers, FaHands, FaLeaf, FaVolleyballBall, FaPaw, FaPaintBrush, FaCalendar, FaClock } from "react-icons/fa"
-import { MdLocationOn } from "react-icons/md"
+import { MdLocationOn } from "react-icons/md";
+import React, { useState } from 'react';
 
 export const categories = {
     "teach": "Teaching & Learning",
@@ -17,7 +18,7 @@ export const categories = {
 
 function ModalSeePost(props) {
 
-    const { show, handleClose, post, userType } = props;
+    const { show, handleClose, post, userType, setShowUpdatePost } = props;
 
     const buttonText = () => {
         if (post.status === 'going') {
@@ -108,7 +109,8 @@ function ModalSeePost(props) {
     }
 
     const handleUpdate = () => {
-
+      setShowUpdatePost(true);
+      handleClose();
     }
 
     const applyPost = () => {
@@ -178,6 +180,7 @@ function ModalSeePost(props) {
 
                 </Modal.Footer>
             </div>
+            
         </Modal>
     );
 }
