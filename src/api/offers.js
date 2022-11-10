@@ -44,7 +44,7 @@ export const deleteOferta = (id) => new Promise ((resolve, reject) => {
 });
 
 export const updateOferta = (id) => new Promise ((resolve, reject) => {
-    Axios.put(`${process.env.REACT_APP_API_URL_V1}/offers/update`,3).then((results) => {
+    Axios.put(`${process.env.REACT_APP_API_URL_V1}/offers/update`,id).then((results) => {
         if(results.status === 200){
             resolve(true);
         }
