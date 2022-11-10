@@ -122,7 +122,7 @@ function Post(props) {
                     </div>
                     {(userType === 'VOLUNTEER') && (
                         <button 
-                            className={`Post-Apply-btn ${post.status}`}
+                            className={`Post-Apply-btn ${post.status || ''}`}
                             onClick={applyPost}
                         >
                             {buttonText()}

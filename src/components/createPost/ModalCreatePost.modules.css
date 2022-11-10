@@ -181,3 +181,7 @@
 .ModalCreatePost-input-file:active::before {
     background: transparent;
 }
+
+.modal-content{
+    border: 3px solid var(--blue-dark) !important;
+}
