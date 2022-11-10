@@ -7,7 +7,7 @@ import ModalUpdatePost from "../createPost/ModalUpdatePost";
 
 function Post(props) {
 
-    const { post, userType } = props;
+    const { post, userType, reloadOffers } = props;
 
     const [showSeePost, setShowSeePost] = useState(false);
     const [showUpdatePost, setShowUpdatePost] = useState(false);
@@ -118,7 +118,7 @@ function Post(props) {
                     <div className="Post-information">
                         <div className="Post-info-container">
                             <FaCalendar className="Post-info-Icon" />
-                            <span>{post.date || ''}</span>
+                            <span>{(post.date || '').slice(0, 10)}</span>
                         </div>
                         <div className="Post-info-container">
                             <FaClock className="Post-info-Icon" />
@@ -148,6 +148,7 @@ function Post(props) {
                 post={post} 
                 show={showSeePost} 
                 handleClose={handleCloseModal} 
+                reloadOffers={reloadOffers}
             />)}
             
             {(showUpdatePost) && (

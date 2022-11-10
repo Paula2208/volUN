@@ -7,10 +7,11 @@ import TimePicker from 'react-time-picker';
 import DatePicker from "react-datepicker";
 import { getTimeNow } from "../../containers/FeedLayout/FeedLayout";
 import { toast } from 'react-toastify';
+import {createOferta, getOfertas} from "../../api/offers"
 
 function ModalCreatePost(props) {
 
-    const { show, handleClose } = props;
+    const { show, handleClose, reloadOffers } = props;
 
     const [image, setImage] = useState(''); /*@todo */
     const [title, setTitle] = useState('');
@@ -40,7 +41,30 @@ function ModalCreatePost(props) {
         }
 
         setLoaddingCreate(true);
-        //reload after create
+        createOferta({
+            title: title,
+            description: description,
+            location: location,
+            date: date,
+            time: time,
+            category: category,
+            image: image,
+            nonProfitUsername: '', //@todo get user type and name endpoint
+        })
+        .then((results) => {
+            if(results){
+                toast.success('Post created successfully!');
+                cancel();
+                reloadOffers();
+            }
+            else{
+                toast.error('Error creating post.')
+            }
+        })
+        .catch(err => {
+            toast.error('Error creating post.')
+            console.log(err);
+        })
     }
 
     const cancel = () => {
