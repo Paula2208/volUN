@@ -1,6 +1,24 @@
+:root{
+  --blue-black:#020A40;
+  --blue-dark: #000F73;
+  --blue-gray: #222D73;
+  --blue-general: #001ABF;
+  --blue-violent: #0020F2;
+  --blue-lavanda:#4960F4;
+
+  --teach: #FFF386;
+  --heart: #1CBBFF;
+  --users: #C9D2F2;
+  --hands: #FF4F4F;
+  --leaf: #44D18D;
+  --ball: #C5BBFF;
+  --paw: #FF9A3D;
+  --paint: #FF69F0;
+}
+
 .App {
   text-align: center;
-  background-color: #020A40;
+  background-color: var(--blue-black);
 }
 
 .App-logo {
@@ -40,4 +58,82 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border-left-color: var(--blue-black);
+
+  animation: spin 1s ease infinite;
+}
+
+.spinner.lavanda {
+  border-left-color: var(--blue-lavanda) !important;
+}
+
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+.modal-dialog {
+  max-width: fit-content !important;
+  justify-content: center;
+}
+
+.modal-content {
+  color: #FFFFFF !important;
+  background-color: var(--blue-dark) !important;
+  border: 3px solid var(--blue-lavanda) !important;
+  padding: 0px !important;
+  width: fit-content !important;
+  border-radius: 70px !important;
+}
+
+
+
+.modal-title {
+  color: var(--blue-lavanda);
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700 !important;
+  font-size: 30px !important;
+  line-height: 35px !important;
+}
+
+.modal-header {
+  justify-content: center !important;
+  border-bottom: 0px solid !important;
+  border-top-right-radius: 70px !important;
+  border-top-left-radius: 70px !important;
+  padding: 20px 20px 0px 20px !important;
+}
+
+.modal-body {
+  padding: 0px 20px 0px 20px !important;
+}
+
+.modal-header .btn-close{
+  display: none !important;
+}
+
+.modal-footer {
+  justify-content: center !important;
+  border-top: 0px solid !important;
+  border-bottom-right-radius: 70px !important;
+  border-bottom-left-radius: 70px !important;
+  padding: 0px 20px 20px 20px !important;
+}
+
+textarea::placeholder {
+  color: white;
+  font-family: 'Roboto';
 }

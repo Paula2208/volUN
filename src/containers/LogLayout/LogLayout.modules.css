@@ -13,8 +13,8 @@
     left: 0px;
     top: 0px;
 
-    background: #000F73;
-    border: 3px solid #4960F4;
+    background: var(--blue-dark);
+    border: 3px solid var(--blue-lavanda);
     border-radius: 0px 50px 50px 0px;
 
     display: flex;
@@ -38,7 +38,7 @@
     height: 70px;
 
     background: rgba(73, 96, 244, 0.1);
-    border: 3px solid #4960F4;
+    border: 3px solid var(--blue-lavanda);
     border-radius: 50px;
 }
 
@@ -52,7 +52,7 @@
     top: 30px;
 
     background: rgba(73, 96, 244, 0.25);
-    border: 3px solid #4960F4;
+    border: 3px solid var(--blue-lavanda);
     border-radius: 50px;
 }
 
@@ -72,7 +72,7 @@
 .LogLayout-AppName{
     display: flex;
     flex-direction:row;
-    color:#4960F4;
+    color:var(--blue-lavanda);
     justify-content: center;
     gap: 20px;
 }

@@ -1,0 +1,188 @@
+.ModalCreatePost-container{
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    justify-content: center;
+    color: white;
+
+    box-sizing: border-box;
+    width: 100%;
+
+    margin-right: 20px;
+    height: 100%;
+
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.ModalCreatePost-image{
+    box-sizing: border-box;
+
+    width: 290px;
+    height: 265px;
+
+    background: var(--blue-balck);
+    border: 3px solid var(--blue-lavanda);
+    border-radius: 50px;
+
+    object-fit: cover;
+}
+
+.ModalCreatePost-image-container{
+    box-sizing: border-box;
+
+    width: 290px;
+    height: 265px;
+
+    background: var(--blue-black);
+    border: 3px solid var(--blue-lavanda);
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.ModalCreatePost-image-icon{
+    font-style: normal;
+    font-weight: 900;
+    font-size: 60px;
+    line-height: 60px;
+}
+
+.ModalCreatePost-btn-cancel{
+    box-sizing: border-box !important;
+    width: 110px !important;
+    height: 50px !important;
+
+    background: transparent !important;
+    border: 3px solid var(--blue-lavanda) !important;
+    border-radius: 50px !important;
+
+    font-family: 'Roboto' !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 25px !important;
+
+    color: var(--blue-lavanda) !important;
+}
+
+.ModalCreatePost-btn-create{
+    box-sizing: border-box !important;
+    width: 110px !important;
+    height: 50px !important;
+
+    background: var(--blue-lavanda) !important;
+    border: 3px solid var(--blue-lavanda) !important;
+    border-radius: 50px !important;
+
+    font-family: 'Roboto' !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 27px !important;
+
+    color: var(--blue-dark) !important;
+    
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.ModalCreatePost-info-container{
+    display: flex ;
+    flex-direction: column ;
+    justify-content: flex-start ;
+    width: 400px;
+}
+
+.ModalCreatePost-info-container.double{
+    flex-direction: row !important;
+    gap: 15px;
+}
+
+.ModalCreatePost-info-container select {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.ModalCreatePost-info-container select:focus{ 
+    outline: none;
+}
+
+.ModalCreatePost-input{
+    color: #ffffff;
+    background-color: transparent;
+    border: 0;
+    height: 21px;
+    padding-left: 10px;
+    font-size: 18px;
+    font-weight: 100;
+    font-family: 'Roboto';
+    outline:none;
+}
+
+.ModalCreatePost-input.more-up{
+    margin-top: 3px;
+}
+
+.ModalCreatePost-input::placeholder {
+    color: #ffffff;
+}
+
+.ModalCreatePost-input-line{
+    width: 100%;
+    height: 0px;
+    border: 1px solid var(--blue-lavanda);
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.ModalCreatePost-btn{
+    gap: 25px;
+}
+
+.ModalCreatePost-description{
+    width: 100%;
+    height: calc(100% - 30px);
+    background-color: var(--blue-black);
+    border: 2px solid var(--blue-lavanda);
+    border-radius: 10px;
+    color: white;
+    padding: 15px;
+    outline: none;
+    resize: none;
+    font-family: 'Roboto';
+}
+
+.ModalCreatePost-input-file::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.ModalCreatePost-input-file::before {
+    content: 'Search an Image';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: transparent;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 18px;
+}
+.ModalCreatePost-input-file:hover::before {
+    border-color: transparent;
+}
+.ModalCreatePost-input-file:active::before {
+    background: transparent;
+}
+
+.ModalCreatePost-border-container{
+    border: 3px solid var(--blue-lavanda);
+    border-radius: 70px;
+}
