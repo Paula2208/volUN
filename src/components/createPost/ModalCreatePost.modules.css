@@ -181,3 +181,8 @@
 .ModalCreatePost-input-file:active::before {
     background: transparent;
 }
+
+.ModalCreatePost-border-container{
+    border: 3px solid var(--blue-lavanda);
+    border-radius: 70px;
+}

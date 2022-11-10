@@ -2,13 +2,16 @@ import './Post.modules.css';
 import React, { useState } from 'react';
 import ModalSeePost from '../ModalSeePost/ModalSeePost'
 import { FaBook, FaHeart, FaUsers, FaHands, FaLeaf, FaVolleyballBall, FaPaw, FaPaintBrush, FaCalendar, FaClock } from "react-icons/fa"
-import { MdLocationOn } from "react-icons/md"
+import { MdLocationOn } from "react-icons/md";
+import ModalUpdatePost from "../createPost/ModalUpdatePost";
 
 function Post(props) {
 
-    const { post, userType } = props;
+    const { post, userType, reloadOffers } = props;
 
     const [showSeePost, setShowSeePost] = useState(false);
+    const [showUpdatePost, setShowUpdatePost] = useState(false);
+    const [loaddingUpdate, setLoaddingUpdate] = useState(false);
 
     const handleCloseModal = () => {
         setShowSeePost(false);
@@ -85,6 +88,12 @@ function Post(props) {
         //reload post after apply
     }
 
+    const handleCloseModalUpdate = () => {
+        setShowSeePost(false);
+        setLoaddingUpdate(false);
+        setShowUpdatePost(false);
+      }
+
     return (
         <>
             <div
@@ -109,7 +118,7 @@ function Post(props) {
                     <div className="Post-information">
                         <div className="Post-info-container">
                             <FaCalendar className="Post-info-Icon" />
-                            <span>{post.date || ''}</span>
+                            <span>{(post.date || '').slice(0, 10)}</span>
                         </div>
                         <div className="Post-info-container">
                             <FaClock className="Post-info-Icon" />
@@ -122,7 +131,7 @@ function Post(props) {
                     </div>
                     {(userType === 'VOLUNTEER') && (
                         <button 
-                            className={`Post-Apply-btn ${post.status}`}
+                            className={`Post-Apply-btn ${post.status || ''}`}
                             onClick={applyPost}
                         >
                             {buttonText()}
@@ -132,7 +141,25 @@ function Post(props) {
 
             </div>
 
-            {(showSeePost) && (<ModalSeePost post={post} show={showSeePost} handleClose={handleCloseModal} />)}
+            {(showSeePost) && (
+                <ModalSeePost 
+                setShowUpdatePost={setShowUpdatePost} 
+                userType={userType} 
+                post={post} 
+                show={showSeePost} 
+                handleClose={handleCloseModal} 
+                reloadOffers={reloadOffers}
+            />)}
+            
+            {(showUpdatePost) && (
+                <ModalUpdatePost  
+                show={showUpdatePost} 
+                handleClose={handleCloseModalUpdate}
+                loaddingUpdate={loaddingUpdate}
+                setLoaddingUpdate={setLoaddingUpdate}
+                post={post}
+                />
+            )}
         </>
     );
 }
