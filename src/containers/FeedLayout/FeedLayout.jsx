@@ -17,7 +17,7 @@ export const getTimeNow = () => {
 
 function FeedLayout(props) {
 
-    const {userType, setUserType, setIsLogged, setPosts} = props;
+    const {userType, setUserType, setIsLogged, setPosts, reloadOffers, setLoaddingPosts, loaddingPosts} = props;
 
     const navigate = useNavigate();
 
@@ -36,7 +36,6 @@ function FeedLayout(props) {
 
     const[organizations, setOrganizations] = useState([{name: 'organization 1', username: 'org1'},{name: 'organization 2', username: 'org2'}]); //@todo
 
-    const[loaddingPosts, setLoaddingPosts] = useState(false);
     const[showCreateModal, setShowCreateModal] = useState(false);
 
     const getOptions = () => ( //@audit
@@ -244,7 +243,7 @@ function FeedLayout(props) {
                 <Outlet />
             </div>
 
-            {(showCreateModal) && (<ModalCreatePost  show={showCreateModal} handleClose={handleCloseModal}/>)}
+            {(showCreateModal) && (<ModalCreatePost reloadOffers={reloadOffers} show={showCreateModal} handleClose={handleCloseModal}/>)}
 
         </div>
     );

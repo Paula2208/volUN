@@ -3,7 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FaBook, FaHeart, FaUsers, FaHands, FaLeaf, FaVolleyballBall, FaPaw, FaPaintBrush, FaCalendar, FaClock } from "react-icons/fa"
 import { MdLocationOn } from "react-icons/md";
+import { toast } from 'react-toastify';
 import React, { useState } from 'react';
+import { deleteOferta } from '../../api/offers';
 
 export const categories = {
     "teach": "Teaching & Learning",
@@ -18,7 +20,7 @@ export const categories = {
 
 function ModalSeePost(props) {
 
-    const { show, handleClose, post, userType, setShowUpdatePost } = props;
+    const { show, handleClose, post, userType, setShowUpdatePost, reloadOffers } = props;
 
     const buttonText = () => {
         if (post.status === 'going') {
@@ -105,7 +107,21 @@ function ModalSeePost(props) {
     }
 
     const handleDelete = () => {
-
+      deleteOferta(post.id)
+        .then((results) => {
+          if(results){
+            toast.success(`Post deleted.`)
+            reloadOffers();
+            handleClose();
+          }
+          else{
+            toast.error(`Error deleting post.`)
+          }
+        })
+        .catch((err) => {
+          toast.error(`Error deleting post.`);
+          console.log(err);
+        })
     }
 
     const handleUpdate = () => {
@@ -142,7 +158,7 @@ function ModalSeePost(props) {
                     <div className="Post-information">
                         <div className="Post-info-container">
                             <FaCalendar className="Post-info-Icon" />
-                            <span>{post.date || ''}</span>
+                            <span>{(post.date || '').slice(0, 10)}</span>
                         </div>
                         <div className="Post-info-container">
                             <FaClock className="Post-info-Icon" />

@@ -6,11 +6,15 @@ import Feed from '../containers/Feed/Feed'
 import Login from '../containers/Login/Login'
 import Signup from '../containers/Signup/Signup'
 import ForgotPassword from '../containers/ForgotPassword/ForgotPassword'
+import {getOfertas} from '../api/offers'
 
 function Roots() {
     const [userType, setUserType] = useState('VOLUNTEER'); //must to be on 'VOLUNTEER'
     const [isLogged, setIsLogged] = useState(localStorage.getItem('logged') === 'true');
-    const [posts, setPosts] = useState([
+    const [loaddingPosts, setLoaddingPosts] = useState(false);
+    const [posts, setPosts] = useState([]); //must to be []
+
+    /*const postsMockup = [
         {
             post_id: '12345',
             title: "Dog's bath time!",
@@ -107,7 +111,21 @@ function Roots() {
             org: 'Fundación Patitas',
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         }
-    ]); //must to be []
+    ]*/
+
+    const reloadOffers = () => {
+        setLoaddingPosts(true);
+        getOfertas()
+            .then((results) => {
+                setLoaddingPosts(false);
+                setPosts(results.filter(post => post.title !== null));
+            })
+            .catch(console.error)
+    }
+
+    useEffect(() => {
+        reloadOffers();
+    }, [isLogged])
 
     if(!isLogged){
         return(
@@ -124,8 +142,15 @@ function Roots() {
 
     return (
         <Routes>
-            <Route path="/app" element={<FeedLayout userType={userType} setUserType={setUserType} setIsLogged={setIsLogged} setPosts={setPosts}/>}>
-                <Route index element={<Feed posts={posts} userType={userType}/>}/>
+            <Route path="/app" element={<FeedLayout 
+                                            reloadOffers={reloadOffers} 
+                                            userType={userType} 
+                                            setUserType={setUserType} 
+                                            setIsLogged={setIsLogged} 
+                                            setPosts={setPosts} 
+                                            setLoaddingPosts={setLoaddingPosts} 
+                                            loaddingPosts={loaddingPosts}/>}>
+                <Route index element={<Feed posts={posts} userType={userType} reloadOffers={reloadOffers}/>}/>
                 <Route path="*" element={<Navigate to="/app" />}/>
             </Route>
             <Route path="*" element={<Navigate to="/app" />}/>
