@@ -10,11 +10,57 @@
 .informacion {
     display: flex;
     flex-direction: column;
-    width: 100%;
     justify-content: center;
+    align-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 80%;
 }
 
-.informacion input {
-    width: 300px;
-    height: 25px;
+.Signup-double{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 10px;
+}
+
+.Signup-input{
+    color: #ffffff;
+    background-color: transparent;
+    border: 0;
+    width: 230px;
+    padding-left: 10px;
+    font-size: 18px;
+    font-weight: 100;
+    font-family: 'Roboto';
+    outline:none;
+}
+
+.Signup-select{
+    color: #ffffff;
+    background-color: transparent;
+    border: 0;
+    width: 230px;
+    padding-left: 10px;
+    font-size: 18px;
+    font-weight: 100;
+    font-family: 'Roboto';
+    outline:none;
+}
+
+.Signup-input::placeholder {
+    color: #ffffff;
+}
+
+.Signup-input-line{
+    width: 230px;
+    height: 0px;
+    border: 1px solid var(--blue-lavanda);
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.Signup-container{
+    display: flex;
+    flex-direction: column;
 }

@@ -19,37 +19,37 @@ function Signup() {
 
     const handleCreate = (e) => {
 
-        if(name === ''){
+        if (name === '') {
             toast.error("Please add a name");
             return
         }
 
-        if(lastName === ''){
+        if (lastName === '') {
             toast.error("Please add a last name");
             return
         }
 
-        if(email === ''){
+        if (email === '') {
             toast.error("Please add an email");
             return
         }
 
-        if(cellphoneNumber===''){
+        if (cellphoneNumber === '') {
             toast.error("Please add a cellphoneNumber");
             return
         }
 
-        if(username === ''){
+        if (username === '') {
             toast.error("Please add a username");
             return
         }
 
-        if(password === ''){
+        if (password === '') {
             toast.error("Please add a password");
             return
         }
 
-        if(accountType === ''){
+        if (accountType === '') {
             toast.error("Please select an accountType");
             return
         }
@@ -63,7 +63,7 @@ function Signup() {
                     navigate("../");
                     setLoading(false);
                 }
-                else{
+                else {
                     toast.success("Error creating user. Try again later!");
                     setLoading(false);
                 }
@@ -86,37 +86,75 @@ function Signup() {
         <div className="Signup-title">
             <div className='informacion'>
 
-                <div>
-                    <input type='text'
-                        placeholder="First Name*"
-                        onChange={(event) => { setName(event.target.value); }} />
-                    <input type='text'
-                        placeholder="Last Name*"
-                        onChange={(event) => { setLastName(event.target.value); }} />
+                <div className='Signup-double'>
+                    <div className='Signup-container'>
+                        <input
+                            type='text'
+                            className="Signup-input"
+                            placeholder="First Name*"
+                            onChange={(event) => { setName(event.target.value); }} />
+                        <div className="Signup-input-line" />
+                    </div>
+                    <div className='Signup-container'>
+                        <input
+                            type='text'
+                            className="Signup-input"
+                            placeholder="Last Name*"
+                            onChange={(event) => { setLastName(event.target.value); }} />
+                        <div className="Signup-input-line" />
+                    </div>
                 </div>
 
-                <div>
-                    <input type='text'
-                        placeholder="Email*"
-                        onChange={(event) => { setEmail(event.target.value); }} />
-                    <input type='text'
-                        placeholder="Phonenumber*"
-                        onChange={(event) => { setCellphoneNumber(event.target.value); }} />
+                <div className='Signup-double'>
+                    <div className='Signup-container'>
+                        <input
+                            type='text'
+                            className="Signup-input"
+                            placeholder="Email*"
+                            onChange={(event) => { setEmail(event.target.value); }} />
+                        <div className="Signup-input-line" />
+                    </div>
+                    <div className='Signup-container'>
+                        <input
+                            className="Signup-input"
+                            type='text'
+                            placeholder="Phonenumber*"
+                            onChange={(event) => { setCellphoneNumber(event.target.value); }} />
+                        <div className="Signup-input-line" />
+                    </div>
                 </div>
 
-                <div>
-                    <input type='text'
-                        placeholder="Username*"
-                        onChange={(event) => { setUsername(event.target.value); }} />
-                    <input type='text'
-                        placeholder="Password*"
-                        onChange={(event) => { setPassword(event.target.value); }} />
+                <div className='Signup-double'>
+                    <div className='Signup-container'>
+                        <input
+                            type='text'
+                            className="Signup-input"
+                            placeholder="Username*"
+                            onChange={(event) => { setUsername(event.target.value); }} />
+                        <div className="Signup-input-line" />
+                    </div>
+                    <div className='Signup-container'>
+                        <input
+                            type='password'
+                            className="Signup-input"
+                            placeholder="Password*"
+                            onChange={(event) => { setPassword(event.target.value); }} />
+                        <div className="Signup-input-line" />
+                    </div>
                 </div>
 
-                <input type='text'
-                    placeholder="Select user type*"
-                    onChange={(event) => { setAccountType(event.target.value); }} />
-                    
+                <select
+                    onChange={(e) => setAccountType(e.target.value)}
+                    value={accountType}
+                    className="Signup-select"
+                >
+                    <option value="" disabled>Select user type*</option>
+                    <option value="VOLUNTEER">Volunteer</option>
+                    <option value="NON_PROFIT">Non Profit</option>
+                    <option value="ADMIN">Admin</option>
+                </select>
+                <div className="Signup-input-line" />
+
                 <div>
                     <button onClick={handleCreate}> Signup</button>
                     <button onClick={handleCancel}> Cancel</button>
