@@ -125,6 +125,9 @@
     padding: 2px 5px 5px 10px;
 
     color: var(--blue-lavanda);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .Post-Category{
