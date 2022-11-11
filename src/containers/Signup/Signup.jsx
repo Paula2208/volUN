@@ -143,21 +143,33 @@ function Signup() {
                     </div>
                 </div>
 
-                <select
-                    onChange={(e) => setAccountType(e.target.value)}
-                    value={accountType}
-                    className="Signup-select"
-                >
-                    <option value="" disabled>Select user type*</option>
-                    <option value="VOLUNTEER">Volunteer</option>
-                    <option value="NON_PROFIT">Non Profit</option>
-                    <option value="ADMIN">Admin</option>
-                </select>
-                <div className="Signup-input-line" />
+                <div className='Signup-container select'>
+                    <select
+                        onChange={(e) => setAccountType(e.target.value)}
+                        value={accountType}
+                        className="Signup-select"
+                    >
+                        <option value="" disabled>Select user type*</option>
+                        <option value="VOLUNTEER">Volunteer</option>
+                        <option value="NON_PROFIT">Non Profit</option>
+                        <option value="ADMIN">Admin</option>
+                    </select>
+                    <div className="Signup-input-line select" />
+                </div>
 
-                <div>
-                    <button onClick={handleCreate}> Signup</button>
-                    <button onClick={handleCancel}> Cancel</button>
+                <div className="Signup-buttons">
+                    <button 
+                        className="Signup-btn-create"
+                        onClick={handleCreate}
+                    >
+                        Signup
+                    </button>
+                    <button 
+                        className="Signup-btn-cancel"
+                        onClick={handleCancel}
+                    >
+                        Cancel
+                    </button>
                 </div>
 
             </div>
