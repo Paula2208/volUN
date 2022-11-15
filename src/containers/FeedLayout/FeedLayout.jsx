@@ -4,7 +4,7 @@ import { FaHandshake, FaBook, FaHeart, FaUsers, FaHands, FaLeaf, FaVolleyballBal
 import { FiLogOut } from "react-icons/fi";
 import { CgOrganisation } from "react-icons/cg";
 import {MdPostAdd} from "react-icons/md";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ModalCreatePost from '../../components/createPost/ModalCreatePost';
 
 import TimePicker from 'react-time-picker';
@@ -159,6 +159,7 @@ function FeedLayout(props) {
                         <div className="FeedLayout-line"/>
 
                         <div>
+                            {(userType !== 'NON_PROFIT') && (
                             <div className="FeedLayout-Info-Container pointer">
                                 <CgOrganisation className="FeedLayout-Info-Icon" />
                                 <div className="FeedLayout-Input">
@@ -172,6 +173,7 @@ function FeedLayout(props) {
                                     <div className="FeedLayout-input-line org"/>
                                 </div>
                             </div>
+                            )}
 
                             <div className="FeedLayout-Info-Container">
                                 <FaCalendar className="FeedLayout-Info-Icon" />
@@ -219,7 +221,7 @@ function FeedLayout(props) {
             
             <div className="FeedLayout-content">
                 <div className="FeedLayout-header">
-                    {(userType !== 'VOLUNTEER') && (
+                    {(userType === 'ADMIN' || userType === 'NON_PROFIT') && (
                         <div 
                             className="FeedLayout-startPost pointer"
                             onClick={()=> setShowCreateModal(true)}

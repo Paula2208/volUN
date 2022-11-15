@@ -10,11 +10,110 @@
 .informacion {
     display: flex;
     flex-direction: column;
-    width: 100%;
     justify-content: center;
+    align-content: space-between;
+    align-items: center;
+    gap: 20px;
 }
 
-.informacion input {
-    width: 300px;
-    height: 25px;
+.Signup-double{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 10px;
+}
+
+.Signup-input{
+    color: #ffffff;
+    background-color: transparent;
+    border: 0;
+    width: 230px;
+    padding-left: 10px;
+    font-size: 18px;
+    font-weight: 100;
+    font-family: 'Roboto';
+    outline:none;
+}
+
+.Signup-select{
+    color: #ffffff;
+    background-color: transparent;
+    border: 0;
+    width: 100%;
+    padding-left: 10px;
+    font-size: 18px;
+    font-weight: 100;
+    font-family: 'Roboto';
+    outline:none;
+}
+
+.Signup-input::placeholder {
+    color: #ffffff;
+}
+
+.Signup-input-line{
+    width: 230px;
+    height: 0px;
+    border: 1px solid var(--blue-lavanda);
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.Signup-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.Signup-container.select{
+    width: 100%;
+}
+
+.Signup-input-line.select{
+    width: 100% !important;
+}
+
+.Signup-buttons{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    justify-content: space-between;
+    gap: 80px;
+}
+
+.Signup-btn-create{
+    box-sizing: border-box;
+    width: 110px;
+    height: 50px;
+
+    background: var(--blue-lavanda);
+    border: 3px solid var(--blue-lavanda);
+    border-radius: 50px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 27px;
+
+    color: var(--blue-dark);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Signup-btn-cancel{
+    box-sizing: border-box;
+    width: 110px;
+    height: 50px;
+
+    background: transparent;
+    border: 3px solid var(--blue-lavanda);
+    border-radius: 50px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+
+    color: var(--blue-lavanda);
 }

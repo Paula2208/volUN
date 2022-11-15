@@ -58,3 +58,27 @@ export const login = (
             reject(false);
         })
 });
+
+export const getUser = (
+    setUserType
+) => new Promise((resolve, reject) => {
+    
+    Axios.get(`${process.env.REACT_APP_API_URL_V1}/auth/${localStorage.getItem('username') || ''}`)
+        .then((results) => {
+
+            if(results.data === false){
+                console.log('Error getting user.')
+            }
+            else{
+                localStorage.setItem('nameUser', `${results.data.name} ${results.data.lastName}`);
+                localStorage.setItem('userType', results.data.accountType);
+                setUserType(results.data.accountType);
+            }
+
+            resolve(results.data); 
+            return;
+        })
+        .catch(err => {
+            reject(false);
+        })
+});
