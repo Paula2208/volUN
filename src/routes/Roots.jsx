@@ -7,6 +7,7 @@ import Login from '../containers/Login/Login'
 import Signup from '../containers/Signup/Signup'
 import ForgotPassword from '../containers/ForgotPassword/ForgotPassword'
 import {getOfertas} from '../api/offers'
+import {getUser} from '../api/auth'
 
 function Roots() {
     const [userType, setUserType] = useState('VOLUNTEER'); //must to be on 'VOLUNTEER'
@@ -16,7 +17,7 @@ function Roots() {
 
     /*const postsMockup = [
         {
-            post_id: '12345',
+            post_id: 12345
             title: "Dog's bath time!",
             image: 'https://images.pexels.com/photos/6131165/pexels-photo-6131165.jpeg?auto=compress&cs=tinysrgb&w=800',
             category: 'paw',
@@ -24,11 +25,11 @@ function Roots() {
             time: '12:30',
             location: 'instituto canino',
             status: 'any',
-            org: 'Fundación Patitas',
+            nonProfitName: 'Fundación Patitas',
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
         {
-            post_id: '123452',
+            post_id: 123452,
             title: "Dog's bath time!",
             image: 'https://images.pexels.com/photos/6131165/pexels-photo-6131165.jpeg?auto=compress&cs=tinysrgb&w=800',
             category: 'paint',
@@ -36,11 +37,11 @@ function Roots() {
             time: '12:30',
             location: 'instituto canino',
             status: 'any',
-            org: 'Fundación Patitas',
+            nonProfitName: 'Fundación Patitas',
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
         {
-            post_id: '123453',
+            post_id: 123453,
             title: "Dog's bath time!",
             image: 'https://images.pexels.com/photos/6131165/pexels-photo-6131165.jpeg?auto=compress&cs=tinysrgb&w=800',
             category: 'leaf',
@@ -48,11 +49,11 @@ function Roots() {
             time: '12:30',
             location: 'instituto canino',
             status: 'pending',
-            org: 'Fundación Patitas',
+            nonProfitName: 'Fundación Patitas',
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
         {
-            post_id: '123454',
+            post_id: 123454,
             title: "Dog's bath time!",
             image: 'https://images.pexels.com/photos/6131165/pexels-photo-6131165.jpeg?auto=compress&cs=tinysrgb&w=800',
             category: 'teach',
@@ -60,11 +61,11 @@ function Roots() {
             time: '12:30',
             location: 'instituto canino',
             status: 'going',
-            org: 'Fundación Patitas',
+            nonProfitName: 'Fundación Patitas',
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
         {
-            post_id: '123451',
+            post_id: 123451,
             title: "Dog's bath time!",
             image: 'https://images.pexels.com/photos/6131165/pexels-photo-6131165.jpeg?auto=compress&cs=tinysrgb&w=800',
             category: 'users',
@@ -72,11 +73,11 @@ function Roots() {
             time: '12:30',
             location: 'instituto canino',
             status: 'any',
-            org: 'Fundación Patitas',
+            nonProfitName: 'Fundación Patitas',
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
         {
-            post_id: '123452',
+            post_id: 123452,
             title: "Dog's bath time!",
             image: 'https://images.pexels.com/photos/6131165/pexels-photo-6131165.jpeg?auto=compress&cs=tinysrgb&w=800',
             category: 'ball',
@@ -84,11 +85,11 @@ function Roots() {
             time: '12:30',
             location: 'instituto canino',
             status: 'going',
-            org: 'Fundación Patitas',
+            nonProfitName: 'Fundación Patitas',
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
         {
-            post_id: '123453',
+            post_id: 123453,
             title: "Dog's bath time!",
             image: 'https://images.pexels.com/photos/6131165/pexels-photo-6131165.jpeg?auto=compress&cs=tinysrgb&w=800',
             category: 'hands',
@@ -96,11 +97,11 @@ function Roots() {
             time: '12:30',
             location: 'instituto canino',
             status: 'pending',
-            org: 'Fundación Patitas',
+            nonProfitName: 'Fundación Patitas',
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
         {
-            post_id: '123454',
+            post_id: 123454,
             title: "Dog's bath time!",
             image: 'https://images.pexels.com/photos/6131165/pexels-photo-6131165.jpeg?auto=compress&cs=tinysrgb&w=800',
             category: 'heart',
@@ -108,23 +109,29 @@ function Roots() {
             time: '12:30',
             location: 'instituto canino',
             status: 'any',
-            org: 'Fundación Patitas',
+            nonProfitName: 'Fundación Patitas',
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         }
     ]*/
+
+    const offersSortDSC = (a,b) =>{
+        return b.id - a.id
+    }
 
     const reloadOffers = () => {
         setLoaddingPosts(true);
         getOfertas()
             .then((results) => {
                 setLoaddingPosts(false);
-                setPosts(results.filter(post => post.title !== null));
+                setPosts(results.filter(post => post.title !== null).sort(offersSortDSC));
+                //setPosts(postsMockup); only for testing
             })
             .catch(console.error)
     }
 
     useEffect(() => {
         reloadOffers();
+        getUser(setUserType)
     }, [isLogged])
 
     if(!isLogged){

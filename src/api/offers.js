@@ -13,7 +13,6 @@ export const createOferta = (body) => new Promise((resolve, reject) => {
 
 export const getOfertas = () => new Promise((resolve, reject) => {
     Axios.get(`${process.env.REACT_APP_API_URL_V1}/offers/get`).then((results) => {
-        console.log('Pau getOfertas', results)
         if(results.status === 200){
             resolve(results.data);
         }
