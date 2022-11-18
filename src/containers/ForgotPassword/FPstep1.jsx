@@ -1,8 +1,8 @@
 import './ForgotPassword.modules.css';
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
-import { forgotPassword } from "../../api/auth";
-
+import {isEmail} from '../../helpers/inputHelpers'
+import { toast } from 'react-toastify';
 
 function FPstep1(props) {
 
@@ -11,9 +11,11 @@ function FPstep1(props) {
   const[email, setEmail] = useState('');
 
   const handleSendStep1 = () => {
-    console.log('button send clicked - step 1 forgot password')
-    forgotPassword(email);
-    props.setStep(2);
+    if(isEmail(email)){
+      props.setStep(2);
+      return
+    }
+    toast.error('Please enter a valid email.');
   }
 
   return (
