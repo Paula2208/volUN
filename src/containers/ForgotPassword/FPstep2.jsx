@@ -14,6 +14,8 @@ function FPstep2(props) {
 
   const handleSendStep2 = () => {
     console.log('button send clicked - step 2 forgot password')
+    console.log(digit1+digit2+digit3+digit4+digit5);
+    
     props.setStep(3);
   }
 
