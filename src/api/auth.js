@@ -82,3 +82,28 @@ export const getUser = (
             reject(false);
         })
 });
+
+
+export const forgotPassword = (
+    email
+) => new Promise((resolve, reject) => {
+    
+    Axios.post(`${process.env.REACT_APP_API_URL_V1}/auth/forgotPassword`,{
+        email: email
+    })
+        .then((results) => {
+            if(results.status === 200){
+                resolve(results.data);
+                console.log("sucess!");
+                
+            }
+            else{
+                resolve([]);
+                console.log("fail!");
+            }
+        })
+        .catch(err => {
+            reject(false);
+        })
+});
+

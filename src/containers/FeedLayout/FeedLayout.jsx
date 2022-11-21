@@ -34,6 +34,9 @@ function FeedLayout(props) {
     const[date, setDate] = useState(new Date());
     const[time, setTime] = useState(getTimeNow());
 
+    const[postCount, setPostCount] = useState(0);
+    const[usersCount, setUsersCount] = useState(0);
+
     const[organizations, setOrganizations] = useState([{name: 'organization 1', username: 'org1'},{name: 'organization 2', username: 'org2'}]); //@todo
 
     const[showCreateModal, setShowCreateModal] = useState(false);
@@ -221,6 +224,35 @@ function FeedLayout(props) {
             
             <div className="FeedLayout-content">
                 <div className="FeedLayout-header">
+                    {(userType === 'ADMIN') && (
+                        <div 
+                            className="FeedLayout-counting pointer"
+                        >
+                            <div className="FeedLayout-counting-row">
+                                <div className="FeedLayout-counting-circle"></div>
+                                <span className="white">
+                                    Posts
+                                </span>
+                                <span className="blue">
+                                    {`${postCount}`}
+                                </span>
+                            </div>
+                            <div className="FeedLayout-counting-row">
+                                <div className="FeedLayout-counting-circle"></div>
+                                <span className="white">
+                                    Users
+                                </span>
+                                <span className="blue">
+                                    {`${usersCount}`}
+                                </span>
+                            </div>
+                            <div className="FeedLayout-counting-line"/>
+                            <span className="blue bold">
+                                Counting
+                            </span>
+                        </div>
+                    )}
+
                     {(userType === 'ADMIN' || userType === 'NON_PROFIT') && (
                         <div 
                             className="FeedLayout-startPost pointer"
