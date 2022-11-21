@@ -35,7 +35,7 @@ function Signup() {
         }
 
         if (cellphoneNumber === '') {
-            toast.error("Please add a cellphoneNumber");
+            toast.error("Please add a cell phone number");
             return
         }
 
@@ -50,7 +50,7 @@ function Signup() {
         }
 
         if (accountType === '') {
-            toast.error("Please select an accountType");
+            toast.error("Please select an account type");
             return
         }
 
