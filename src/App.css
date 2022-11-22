@@ -95,10 +95,9 @@
   border: 3px solid var(--blue-lavanda) !important;
   padding: 0px !important;
   width: fit-content !important;
+  height: fit-content !important;
   border-radius: 70px !important;
 }
-
-
 
 .modal-title {
   color: var(--blue-lavanda);

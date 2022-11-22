@@ -170,6 +170,7 @@ function ModalSeePost(props) {
 
     return (
         <Modal show={show} onHide={handleClose} centered >
+          <div className="ModalSeePost-row">
             <div className={`modal-color ${post.category}`}>
                 <Modal.Header className="ModalSeePost-header">
                     <img 
@@ -228,6 +229,13 @@ function ModalSeePost(props) {
 
                 </Modal.Footer>
             </div>
+
+            {(userType !== 'VOLUNTEER') && (
+            <div className={`modal-color ${post.category} statistics`}> 
+              <span>Hola</span>
+            </div>
+            )}
+          </div>
             
         </Modal>
     );

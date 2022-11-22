@@ -158,6 +158,11 @@
     color: var(--blue-lavanda);
 }
 
+.ModalSeePost-row{
+    display: flex;
+    flex-direction: row;
+}
+
 .ModalSeePost-body span{
     overflow: scroll;
 }
@@ -173,6 +178,11 @@
 
 .modal-content{
     border: 0px !important;
+}
+
+.modal-color{
+    position: relative; 
+    z-index: 2;
 }
 
 .modal-color.teach{
@@ -215,6 +225,20 @@
     border-radius: 70px;
 }
 
+.modal-color.statistics{
+    position: relative !important; 
+    z-index: 1 !important;
+    background-color: var(--blue-dark);
+    border-left-color: var(--blue-dark) !important;
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+
+    margin-left: -70px;
+
+    width: 353px;
+    height: 700px;
+}
+
 .ModalSeePost-category{
     display: flex;
     flex-direction: row;
@@ -227,8 +251,8 @@
 
 .ModalSeePost-category-container{
     position: absolute;
-    left: 0px;
-    top: 307px;
+    left: -3px;
+    top: 304px;
 
     box-sizing: border-box;
     width: 295px;

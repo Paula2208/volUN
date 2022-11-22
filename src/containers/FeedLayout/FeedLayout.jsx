@@ -1,11 +1,12 @@
 import './FeedLayout.modules.css';
 import { Outlet, useNavigate } from "react-router-dom";
-import { FaHandshake, FaBook, FaHeart, FaUsers, FaHands, FaLeaf, FaVolleyballBall, FaPaw, FaPaintBrush, FaCalendar, FaClock } from "react-icons/fa"
+import { FaHandshake, FaBook, FaHeart, FaUsers, FaHands, FaLeaf, FaVolleyballBall, FaPaw, FaPaintBrush, FaCalendar, FaClock, FaChartPie } from "react-icons/fa"
 import { FiLogOut } from "react-icons/fi";
 import { CgOrganisation } from "react-icons/cg";
 import {MdPostAdd} from "react-icons/md";
 import React, { useState, useEffect } from 'react';
 import ModalCreatePost from '../../components/createPost/ModalCreatePost';
+import ModalStatistics from '../../components/ModalStatistics/ModalStatistics'
 
 import TimePicker from 'react-time-picker';
 import DatePicker from "react-datepicker";
@@ -40,6 +41,7 @@ function FeedLayout(props) {
     const[organizations, setOrganizations] = useState([{name: 'organization 1', username: 'org1'},{name: 'organization 2', username: 'org2'}]); //@todo
 
     const[showCreateModal, setShowCreateModal] = useState(false);
+    const[showStatisticsModal, setShowStatisticsModal] = useState(false);
 
     const getOptions = () => ( //@audit
         <>
@@ -64,6 +66,10 @@ function FeedLayout(props) {
 
     const handleCloseModal = () => {
         setShowCreateModal(false);
+    }
+
+    const handleCloseModalStatistics = () => {
+        setShowStatisticsModal(false);
     }
 
     return (
@@ -266,8 +272,12 @@ function FeedLayout(props) {
                     )}
 
                     {(userType === 'ADMIN') && (
-                        <div className="FeedLayout-statisticsButton">
-                            {/*@todo para el sprint 3 */}
+                        <div 
+                            className="FeedLayout-statisticsButton pointer"
+                            onClick={()=> setShowStatisticsModal(true)}
+                        >
+                            <FaChartPie className="FeedLayout-statistics-Icon"/>
+                            <span>See Statistics</span>
                         </div>
                     )}
                 </div>
@@ -278,6 +288,7 @@ function FeedLayout(props) {
             </div>
 
             {(showCreateModal) && (<ModalCreatePost reloadOffers={reloadOffers} show={showCreateModal} handleClose={handleCloseModal}/>)}
+            {(showStatisticsModal) && (<ModalStatistics show={showStatisticsModal} handleClose={handleCloseModalStatistics}/>)}
 
         </div>
     );

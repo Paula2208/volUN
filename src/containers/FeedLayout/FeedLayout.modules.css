@@ -497,3 +497,62 @@
 .FeedLayout-counting span.bold{
     font-weight: 700 !important;
 }
+
+.FeedLayout-statisticsButton{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 330px;
+    height: 80px;
+    left: 96%;
+    top: 10px;
+
+    background: var(--blue-black);
+    border-width: 3px 0px 3px 3px;
+    border-style: solid;
+    border-color: var(--blue-lavanda);
+    border-radius: 10px 0px 0px 10px;
+
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    align-items: center;
+    padding-left: 10px;
+}
+
+.FeedLayout-statisticsButton:hover{
+    left: 77%;
+}
+
+.FeedLayout-statisticsButton:hover{
+    left: 77%;
+    animation: onHoverLeft 1s ease;
+}
+
+@keyframes onHoverLeft {
+    0% {
+        left: 96%;
+    }
+  
+    100% {
+        left: 77%;
+    }
+  }
+
+.FeedLayout-statistics-Icon{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 40px;
+    color: var(--blue-lavanda);
+}
+
+.FeedLayout-statisticsButton span{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 47px;
+    color: #FFFFFF;
+}
