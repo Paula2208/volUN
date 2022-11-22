@@ -11,7 +11,7 @@ import {getUser} from '../api/auth'
 
 function Roots() {
 
-    const postsMockup = [
+    /*const postsMockup = [
         {
             post_id: 12345,
             title: "Dog's bath time!",
@@ -108,12 +108,12 @@ function Roots() {
             nonProfitName: 'Fundación Patitas',
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         }
-    ]
+    ]*/
 
-    const [userType, setUserType] = useState('ADMIN'); //must to be on 'VOLUNTEER'
-    const [isLogged, setIsLogged] = useState(true); //must to be localStorage.getItem('logged') === 'true'
+    const [userType, setUserType] = useState('VOLUNTEER'); //must to be on 'VOLUNTEER'
+    const [isLogged, setIsLogged] = useState(localStorage.getItem('logged') === 'true'); //must to be localStorage.getItem('logged') === 'true'
     const [loaddingPosts, setLoaddingPosts] = useState(false);
-    const [posts, setPosts] = useState(postsMockup); //must to be []
+    const [posts, setPosts] = useState([]); //must to be []
 
     const offersSortDSC = (a,b) =>{
         return b.id - a.id
