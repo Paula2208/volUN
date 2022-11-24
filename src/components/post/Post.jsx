@@ -4,6 +4,7 @@ import ModalSeePost from '../ModalSeePost/ModalSeePost'
 import { FaBook, FaHeart, FaUsers, FaHands, FaLeaf, FaVolleyballBall, FaPaw, FaPaintBrush, FaCalendar, FaClock } from "react-icons/fa"
 import { MdLocationOn } from "react-icons/md";
 import ModalUpdatePost from "../createPost/ModalUpdatePost";
+import {getDate} from '../../helpers/inputHelpers';
 
 function Post(props) {
 
@@ -150,7 +151,7 @@ function Post(props) {
                     <div className="Post-information">
                         <div className="Post-info-container">
                             <FaCalendar className="Post-info-Icon" />
-                            <span>{(post.date || '').slice(0, 10)}</span>
+                            <span>{getDate(post.date || '')}</span>
                         </div>
                         <div className="Post-info-container">
                             <FaClock className="Post-info-Icon" />

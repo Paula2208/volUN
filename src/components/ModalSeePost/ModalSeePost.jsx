@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import React, { useState } from 'react';
 import { deleteOferta } from '../../api/offers';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+import {getDate} from '../../helpers/inputHelpers';
 
 export const categories = {
   "teach": "Teaching & Learning",
@@ -336,7 +337,7 @@ function ModalSeePost(props) {
             <div className="Post-information">
               <div className="Post-info-container">
                 <FaCalendar className="Post-info-Icon" />
-                <span>{(post.date || '').slice(0, 10)}</span>
+                <span>{getDate(post.date || '')}</span>
               </div>
               <div className="Post-info-container">
                 <FaClock className="Post-info-Icon" />

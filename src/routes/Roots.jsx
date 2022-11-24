@@ -135,7 +135,6 @@ function Roots() {
         getOfertas(localStorage.getItem('username'), localStorage.getItem('userType'))
             .then((results) => {
                 setLoaddingPosts(false);
-                console.log('PAUUU filters',filters);
                 let posts;
 
                 if(filtered && JSON.stringify(filters) !== '{}'){

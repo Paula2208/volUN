@@ -58,9 +58,7 @@ function FeedLayout(props) {
     useEffect(() => {
         getOrganizationList()
             .then((results) => {
-                console.log('pau results 1 org', results)
                 setOrganizations(results.map((org) => ({ name: org.nonProfitName, username: org.nonProfitUsername })))
-                console.log('pau results org', results)
             })
     }, [localStorage.getItem('nameUser')])
 
