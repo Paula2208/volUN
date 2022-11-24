@@ -14,7 +14,7 @@ export const functionTemplate = () => new Promise((resolve, reject) => {
 
 
 export const postReportsActive = (postId) => new Promise((resolve, reject) => {
-    Axios.get(`${process.env.REACT_APP_API_URL_V1}/reports/postReportsActive`),postId.then((results) => {
+    Axios.get(`${process.env.REACT_APP_API_URL_V1}/reports/postReportsActive/${postId}`).then((results) => {
         if(results.status === 200){
             resolve(results.data);
         }
@@ -28,7 +28,7 @@ export const postReportsActive = (postId) => new Promise((resolve, reject) => {
 });
 
 export const postReportsPending = (postId) => new Promise((resolve, reject) => {
-    Axios.get(`${process.env.REACT_APP_API_URL_V1}/reports/postReportsPending`),postId.then((results) => {
+    Axios.get(`${process.env.REACT_APP_API_URL_V1}/reports/postReportsPending/${postId}`).then((results) => {
         if(results.status === 200){
             resolve(results.data);
         }
@@ -42,7 +42,7 @@ export const postReportsPending = (postId) => new Promise((resolve, reject) => {
 });
 
 export const postReportsDenied = (postId) => new Promise((resolve, reject) => {
-    Axios.get(`${process.env.REACT_APP_API_URL_V1}/reports/postReportsDenied`),postId.then((results) => {
+    Axios.get(`${process.env.REACT_APP_API_URL_V1}/reports/postReportsDenied/${postId}`).then((results) => {
         if(results.status === 200){
             resolve(results.data);
         }
