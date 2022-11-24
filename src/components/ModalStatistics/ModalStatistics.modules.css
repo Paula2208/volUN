@@ -110,6 +110,29 @@
     height: calc(100% - 315px);
 }
 
+.ModalStatistics-Org:hover::-webkit-scrollbar{
+    display: block;
+}
+
+.ModalStatistics-Org::-webkit-scrollbar {
+    width: 5px;
+    display: none;
+}
+
+.ModalStatistics-Org::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0px grey; 
+    border-radius: 10px;
+}
+
+.ModalStatistics-Org::-webkit-scrollbar-thumb {
+    background: var(--blue-lavanda); 
+    border-radius: 10px;
+}
+
+.ModalStatistics-Org::-webkit-scrollbar-thumb:hover {
+    background: var(--blue-dark); 
+}
+
 .ModalStatistics-Chart-name{
     display: flex;
     flex-direction: column;

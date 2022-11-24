@@ -6,7 +6,8 @@ import { CgOrganisation } from "react-icons/cg";
 import {MdPostAdd} from "react-icons/md";
 import React, { useState, useEffect } from 'react';
 import ModalCreatePost from '../../components/createPost/ModalCreatePost';
-import ModalStatistics from '../../components/ModalStatistics/ModalStatistics'
+import ModalStatistics from '../../components/ModalStatistics/ModalStatistics';
+import {getOrganizationList} from '../../api/offers'
 
 import TimePicker from 'react-time-picker';
 import DatePicker from "react-datepicker";
@@ -43,7 +44,14 @@ function FeedLayout(props) {
     const[showCreateModal, setShowCreateModal] = useState(false);
     const[showStatisticsModal, setShowStatisticsModal] = useState(false);
 
-    const getOptions = () => ( //@audit
+    useEffect(() => {
+        getOrganizationList()
+            .then((results) =>{
+                setOrganizations(results.map((org) => ({name: org.nonProfitName, username: org.nonProfitUsername})))
+            })
+    }, [localStorage.getItem('nameUser')])
+
+    const getOptions = () => (
         <>
           {organizations.map((organization) => (
             <option value={organization.username} key={organization.username}>{organization.name}</option>

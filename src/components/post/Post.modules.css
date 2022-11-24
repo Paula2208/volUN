@@ -40,6 +40,29 @@
     overflow: scroll;
 }
 
+.Post-information:hover::-webkit-scrollbar{
+    display: block;
+}
+
+.Post-information::-webkit-scrollbar {
+    width: 5px;
+    display: none;
+}
+
+.Post-information::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0px grey; 
+    border-radius: 10px;
+}
+
+.Post-information::-webkit-scrollbar-thumb {
+    background: var(--blue-lavanda); 
+    border-radius: 10px;
+}
+
+.Post-information::-webkit-scrollbar-thumb:hover {
+    background: var(--blue-dark); 
+}
+
 .Post-info-container{
     display: flex;
     flex-direction: row;
@@ -128,6 +151,8 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+
+    min-height: 35px;
 }
 
 .Post-Category{

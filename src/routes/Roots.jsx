@@ -119,12 +119,31 @@ function Roots() {
         return b.id - a.id
     }
 
+    const filterPosts = (post) => {
+        if(post.title !== null){
+            if(userType === 'NON_PROFIT'){
+                if(post.nomProfitUsername === localStorage.getItem('username')){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                return true;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+
     const reloadOffers = () => {
         setLoaddingPosts(true);
         getOfertas()
             .then((results) => {
                 setLoaddingPosts(false);
-                setPosts(results.filter(post => post.title !== null).sort(offersSortDSC));
+                setPosts(results.filter(filterPosts).sort(offersSortDSC)); //@todo to check
                 //setPosts(postsMockup); only for testing
             })
             .catch(console.error)

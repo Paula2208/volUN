@@ -72,12 +72,14 @@ export const getOfertasByCategory = (category) => new Promise ((resolve, reject)
 });
 
 export const getOrganizationList = () => new Promise ((resolve, reject) => {
-    Axios.get(`${process.env.REACT_APP_API_URL_V1}/offers/etOrganizationList`).then((results) => {
+    Axios.get(`${process.env.REACT_APP_API_URL_V1}/offers/getOrganizationList`).then((results) => {
         if(results.status === 200){
-            resolve(true);
+            const set = new Set( results.data.map( JSON.stringify ) )
+            const r = Array.from( set ).map( JSON.parse );
+            resolve(r.filter((org) => org.nonProfitUsername !== null));
         }
         else{
-            resolve(false);
+            resolve([]);
         }
     })
     .catch(err => {

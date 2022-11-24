@@ -272,6 +272,15 @@
     width: 160px;
 }
 
+.FeedLayout-Input option {
+    background: var(--blue-black);
+    border: 3px solid var(--blue-lavanda);
+    font-size: 18px;
+    color: #ffffff;
+    width: 160px;
+    border-radius: 10px;
+}
+
 .FeedLayout-Input select:focus{ 
     outline: none;
 }
