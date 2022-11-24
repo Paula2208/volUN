@@ -7,7 +7,7 @@ import TimePicker from 'react-time-picker';
 import DatePicker from "react-datepicker";
 import { getTimeNow } from "../../containers/FeedLayout/FeedLayout";
 import { toast } from 'react-toastify';
-import {createOferta, getOfertas} from "../../api/offers"
+import {createOferta} from "../../api/offers"
 
 function ModalCreatePost(props) {
 

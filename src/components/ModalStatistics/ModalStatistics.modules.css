@@ -1,0 +1,167 @@
+.ModalStatistics-container{
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start;
+    color: white;
+
+    box-sizing: border-box;
+    width: 570px !important;
+    height: 730px !important;
+    border: 2px solid var(--blue-lavanda) !important;
+    border-radius: 70px;
+}
+
+.ModalStatistics-header{
+    display: flex;
+    flex-direction: column;
+}
+
+.ModalStatistics-header h1{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 59px;
+    color: var(--blue-lavanda);
+
+    margin-left: -175px;
+}
+
+.ModalStatistics-body h2{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 42px;
+    color: var(--blue-lavanda);
+}
+
+.ModalStatistics-header-container{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.ModalStatistics-general-row{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.ModalStatistics-letter{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 42px;
+}
+
+.ModalStatistics-letter.letter{
+    color: #FFFFFF;
+}
+
+.ModalStatistics-letter.volunteer{
+    color: var(--paint);
+}
+
+.ModalStatistics-letter.org{
+    color: var(--heart);
+}
+
+.ModalStatistics-header-data{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+.ModalStatistics-Pie{
+    width: 100px;
+    height: 100px;
+    margin-top: -150px;
+}
+
+.ModalStatistics-body{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.ModalStatistics-Chart-data{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.ModalStatistics-Org{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+
+    gap: 20px;
+    margin-top: 10px;
+
+    height: calc(100% - 315px);
+}
+
+.ModalStatistics-Org:hover::-webkit-scrollbar{
+    display: block;
+}
+
+.ModalStatistics-Org::-webkit-scrollbar {
+    width: 5px;
+    display: none;
+}
+
+.ModalStatistics-Org::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0px grey; 
+    border-radius: 10px;
+}
+
+.ModalStatistics-Org::-webkit-scrollbar-thumb {
+    background: var(--blue-lavanda); 
+    border-radius: 10px;
+}
+
+.ModalStatistics-Org::-webkit-scrollbar-thumb:hover {
+    background: var(--blue-dark); 
+}
+
+.ModalStatistics-Chart-name{
+    display: flex;
+    flex-direction: column;
+    width: 115px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+.ModalStatistics-Chart-line{
+    width: 115px;
+    height: 6px;
+    border-radius: 50px;
+}
+
+.ModalStatistics-Chart-line.accepted{
+    background: var(--leaf);
+}
+
+.ModalStatistics-Chart-line.pending{
+    background: var(--teach);
+}
+
+.ModalStatistics-Chart-line.denied{
+    background: var(--paw);
+}

@@ -10,14 +10,10 @@ import {getOfertas} from '../api/offers'
 import {getUser} from '../api/auth'
 
 function Roots() {
-    const [userType, setUserType] = useState('VOLUNTEER'); //must to be on 'VOLUNTEER'
-    const [isLogged, setIsLogged] = useState(localStorage.getItem('logged') === 'true');
-    const [loaddingPosts, setLoaddingPosts] = useState(false);
-    const [posts, setPosts] = useState([]); //must to be []
 
     /*const postsMockup = [
         {
-            post_id: 12345
+            post_id: 12345,
             title: "Dog's bath time!",
             image: 'https://images.pexels.com/photos/6131165/pexels-photo-6131165.jpeg?auto=compress&cs=tinysrgb&w=800',
             category: 'paw',
@@ -114,25 +110,34 @@ function Roots() {
         }
     ]*/
 
-    const offersSortDSC = (a,b) =>{
-        return b.id - a.id
-    }
+    const [userType, setUserType] = useState('VOLUNTEER'); //must to be on 'VOLUNTEER'
+    const [isLogged, setIsLogged] = useState(localStorage.getItem('logged') === 'true'); //must to be localStorage.getItem('logged') === 'true'
+    const [loaddingPosts, setLoaddingPosts] = useState(false);
+    const [posts, setPosts] = useState([]); //must to be []
+
+    useEffect(() => {
+        getUser(setUserType)
+
+        if( localStorage.getItem('username') && 
+            localStorage.getItem('username') !== '' &&
+            localStorage.getItem('userType') && 
+            localStorage.getItem('userType') !== ''
+        ){
+            reloadOffers();
+        }
+
+    }, [isLogged, localStorage.getItem('username')])
 
     const reloadOffers = () => {
         setLoaddingPosts(true);
-        getOfertas()
+        getOfertas(localStorage.getItem('username'), localStorage.getItem('userType'))
             .then((results) => {
                 setLoaddingPosts(false);
-                setPosts(results.filter(post => post.title !== null).sort(offersSortDSC));
+                setPosts(results);
                 //setPosts(postsMockup); only for testing
             })
             .catch(console.error)
     }
-
-    useEffect(() => {
-        reloadOffers();
-        getUser(setUserType)
-    }, [isLogged])
 
     if(!isLogged){
         return(
