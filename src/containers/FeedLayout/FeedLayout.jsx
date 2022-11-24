@@ -63,6 +63,8 @@ function FeedLayout(props) {
         setUserType('VOLUNTEER');
         localStorage.setItem('logged', false);
         localStorage.setItem('username', '');
+        localStorage.setItem('nameUser', '');
+        localStorage.setItem('userType', '');
 
         setIsLogged(false);
         navigate("../");

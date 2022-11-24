@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import {offersSortDSC, filterPosts} from '../helpers/filterHelpers';
 
 export const createOferta = (body) => new Promise((resolve, reject) => {
     Axios.post(`${process.env.REACT_APP_API_URL_V1}/offers/create`, body).then((results) => {
@@ -11,10 +12,10 @@ export const createOferta = (body) => new Promise((resolve, reject) => {
     })
 });
 
-export const getOfertas = () => new Promise((resolve, reject) => {
-    Axios.get(`${process.env.REACT_APP_API_URL_V1}/offers/get`).then((results) => {
+export const getOfertas = (username, userType) => new Promise((resolve, reject) => {
+    Axios.get(`${process.env.REACT_APP_API_URL_V1}/offers/get`).then(async (results) => {
         if(results.status === 200){
-            resolve(results.data);
+            resolve(results.data.filter((post) => filterPosts(post, username, userType)).sort(offersSortDSC));
         }
         else{
             resolve([]);

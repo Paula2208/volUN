@@ -115,44 +115,29 @@ function Roots() {
     const [loaddingPosts, setLoaddingPosts] = useState(false);
     const [posts, setPosts] = useState([]); //must to be []
 
-    const offersSortDSC = (a,b) =>{
-        return b.id - a.id
-    }
+    useEffect(() => {
+        getUser(setUserType)
 
-    const filterPosts = (post) => {
-        if(post.title !== null){
-            if(userType === 'NON_PROFIT'){
-                if(post.nomProfitUsername === localStorage.getItem('username')){
-                    return true;
-                }
-                else{
-                    return false;
-                }
-            }
-            else{
-                return true;
-            }
+        if( localStorage.getItem('username') && 
+            localStorage.getItem('username') !== '' &&
+            localStorage.getItem('userType') && 
+            localStorage.getItem('userType') !== ''
+        ){
+            reloadOffers();
         }
-        else{
-            return false;
-        }
-    }
+
+    }, [isLogged, localStorage.getItem('username')])
 
     const reloadOffers = () => {
         setLoaddingPosts(true);
-        getOfertas()
+        getOfertas(localStorage.getItem('username'), localStorage.getItem('userType'))
             .then((results) => {
                 setLoaddingPosts(false);
-                setPosts(results.filter(filterPosts).sort(offersSortDSC)); //@todo to check
+                setPosts(results);
                 //setPosts(postsMockup); only for testing
             })
             .catch(console.error)
     }
-
-    useEffect(() => {
-        reloadOffers();
-        getUser(setUserType)
-    }, [isLogged])
 
     if(!isLogged){
         return(
