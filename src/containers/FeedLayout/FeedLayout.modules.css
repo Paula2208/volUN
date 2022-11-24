@@ -565,3 +565,22 @@
     line-height: 47px;
     color: #FFFFFF;
 }
+
+.FeedLayout-btn-filters{
+    display: flex;
+    flex-direction: row;
+    gap: 22px;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: center;
+    margin-right: 13px;
+}
+
+.FeedLayout-Clean{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+
+    color: var(--blue-lavanda);
+}

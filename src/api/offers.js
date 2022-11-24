@@ -77,7 +77,7 @@ export const getOrganizationList = () => new Promise ((resolve, reject) => {
         if(results.status === 200){
             const set = new Set( results.data.map( JSON.stringify ) )
             const r = Array.from( set ).map( JSON.parse );
-            resolve(r.filter((org) => org.nonProfitUsername !== null));
+            resolve(r.filter((org) => org.nonProfitUsername !== null && org.nonProfitName !== null));
         }
         else{
             resolve([]);

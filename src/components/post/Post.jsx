@@ -7,7 +7,7 @@ import ModalUpdatePost from "../createPost/ModalUpdatePost";
 
 function Post(props) {
 
-    const { post, userType, reloadOffers } = props;
+    const { post, userType, reloadOffers, cleanFilters, setCleanFilters } = props;
 
     const [showSeePost, setShowSeePost] = useState(false);
     const [showUpdatePost, setShowUpdatePost] = useState(false);
@@ -181,6 +181,8 @@ function Post(props) {
                 show={showSeePost} 
                 handleClose={handleCloseModal} 
                 reloadOffers={reloadOffers}
+                cleanFilters={cleanFilters}
+                setCleanFilters={setCleanFilters}
             />)}
             
             {(showUpdatePost) && (

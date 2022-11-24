@@ -22,7 +22,7 @@ export const categories = {
 
 function ModalSeePost(props) {
 
-  const { show, handleClose, post, userType, setShowUpdatePost, reloadOffers } = props;
+  const { show, handleClose, post, userType, setShowUpdatePost, reloadOffers, setCleanFilters, cleanFilters } = props;
 
   const mockupReport = {
     post_id: 12,
@@ -288,6 +288,7 @@ function ModalSeePost(props) {
         if (results) {
           toast.success(`Post deleted.`)
           reloadOffers();
+          setCleanFilters(true);
           handleClose();
         }
         else {

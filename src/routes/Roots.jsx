@@ -8,6 +8,7 @@ import Signup from '../containers/Signup/Signup'
 import ForgotPassword from '../containers/ForgotPassword/ForgotPassword'
 import {getOfertas} from '../api/offers'
 import {getUser} from '../api/auth'
+import {offersSortDSC, filteringPost} from '../helpers/filterHelpers';
 
 function Roots() {
 
@@ -114,6 +115,7 @@ function Roots() {
     const [isLogged, setIsLogged] = useState(localStorage.getItem('logged') === 'true'); //must to be localStorage.getItem('logged') === 'true'
     const [loaddingPosts, setLoaddingPosts] = useState(false);
     const [posts, setPosts] = useState([]); //must to be []
+    const [cleanFilters, setCleanFilters] = useState(false);
 
     useEffect(() => {
         getUser(setUserType)
@@ -126,15 +128,38 @@ function Roots() {
             reloadOffers();
         }
 
-    }, [isLogged, localStorage.getItem('username')])
+    }, [isLogged, localStorage.getItem('username')]);
 
-    const reloadOffers = () => {
+    const reloadOffers = (filtered=false , filters={}) => {
         setLoaddingPosts(true);
         getOfertas(localStorage.getItem('username'), localStorage.getItem('userType'))
             .then((results) => {
                 setLoaddingPosts(false);
-                setPosts(results);
-                //setPosts(postsMockup); only for testing
+                console.log('PAUUU filters',filters);
+                let posts;
+
+                if(filtered && JSON.stringify(filters) !== '{}'){
+                    if(
+                        'org' in filters && 
+                        filters.org === '' &&
+                        'date' in filters && 
+                        filters.date === '' &&
+                        'time' in filters && 
+                        filters.time === '' &&
+                        'type' in filters && 
+                        filters.type.length === 0 
+                    ){
+                        posts = results
+                    }
+                    else{
+                        posts = results.filter((post) => filteringPost(post, filters)).sort(offersSortDSC);
+                    }
+                }
+                else{
+                    posts = results;
+                }
+
+                setPosts(posts);
             })
             .catch(console.error)
     }
@@ -161,8 +186,17 @@ function Roots() {
                                             setIsLogged={setIsLogged} 
                                             setPosts={setPosts} 
                                             setLoaddingPosts={setLoaddingPosts} 
-                                            loaddingPosts={loaddingPosts}/>}>
-                <Route index element={<Feed posts={posts} userType={userType} reloadOffers={reloadOffers}/>}/>
+                                            loaddingPosts={loaddingPosts}
+                                            cleanFilters={cleanFilters}
+                                            setCleanFilters={setCleanFilters}
+                                            />}>
+                <Route index element={<Feed 
+                                        posts={posts} 
+                                        userType={userType} 
+                                        reloadOffers={reloadOffers}
+                                        cleanFilters={cleanFilters}
+                                        setCleanFilters={setCleanFilters}
+                                        />}/>
                 <Route path="*" element={<Navigate to="/app" />}/>
             </Route>
             <Route path="*" element={<Navigate to="/app" />}/>
