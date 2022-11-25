@@ -4,12 +4,13 @@ import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 import StatisticsOrg from '../StatisticsOrg/StatisticsOrg';
 import {getNumberOfUsersPerType} from '../../api/statistics'
+import {nonProfitReport} from '../../api/reports'
 
 function ModalStatistics(props) {
 
   const { show, handleClose } = props;
 
-  const mockupOrg = [
+  /*const mockupOrg = [
     {
       nonProfitUsername: "patitasSuaves",
       nonProfitName: "nonProfitName nonProfitLastname",
@@ -38,11 +39,11 @@ function ModalStatistics(props) {
       active: 120,
       denied: 174
     }
-  ]
+  ]*/
 
   const [orgCount, setOrgCount] = useState(0);
   const [volunteerCount, setVolunteerCount] = useState(0);
-  const [orgStatistics, setOrgStatistics] = useState(mockupOrg); //must be []
+  const [orgStatistics, setOrgStatistics] = useState([]); //must be []
 
   const data = [
     { name: 'Volunteers', value: volunteerCount },
@@ -58,6 +59,8 @@ function ModalStatistics(props) {
               setOrgCount(results.orgs);
               setVolunteerCount(results.volunteers);
             });
+        
+        nonProfitReport().then((results) => setOrgStatistics(results));
     }
 
   }, []);

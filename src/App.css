@@ -160,3 +160,12 @@ textarea::placeholder {
   color: white;
   font-family: 'Roboto';
 }
+
+option {
+  background: var(--blue-black);
+  border: 3px solid var(--blue-lavanda);
+  font-size: 18px;
+  color: #ffffff;
+  width: 160px;
+  border-radius: 10px;
+}

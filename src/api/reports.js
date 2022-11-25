@@ -44,3 +44,18 @@ export const postReportsDenied = (postId) => new Promise((resolve, reject) => {
         console.error(err);
     })
 });
+
+export const nonProfitReport = () => new Promise((resolve, reject) => {
+    Axios.get(`${process.env.REACT_APP_API_URL_V1}/reports`).then((results) => {
+        if(results.status === 200){
+            resolve(results.data.filter((org) => org.nonProfitUsername !== null && org.nonProfitName !== null));
+        }
+        else{
+            resolve([]);
+        }
+    })
+    .catch(err => {
+        resolve([]);
+        console.error(err);
+    })
+});
