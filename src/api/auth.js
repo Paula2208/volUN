@@ -144,3 +144,19 @@ export const changeApply = (
             reject(err);
         })
 });
+
+export const sendForgotPasswordCode = (
+    email
+) => new Promise((resolve, reject) => {
+    
+    Axios.post(`${process.env.REACT_APP_API_URL_V1}/auth/forgotPassword`,
+        {
+            "email": email,
+        })
+        .then((results) => {
+            resolve(results.data)
+        })
+        .catch(err => {
+            reject(err);
+        })
+});
