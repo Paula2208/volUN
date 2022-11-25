@@ -8,6 +8,7 @@ import React, { useState, useEffect } from 'react';
 import ModalCreatePost from '../../components/createPost/ModalCreatePost';
 import ModalStatistics from '../../components/ModalStatistics/ModalStatistics';
 import { getOrganizationList } from '../../api/offers'
+import {getNumberOfUsersPerType, getNumberOfPosts} from '../../api/statistics'
 
 import TimePicker from 'react-time-picker';
 import DatePicker from "react-datepicker";
@@ -80,6 +81,21 @@ function FeedLayout(props) {
             setCleanFilters(false);
         }
     }, [cleanFilters])
+
+    useEffect(() => {
+        if(localStorage.getItem('userType') === 'ADMIN' ){
+            getNumberOfUsersPerType()
+                .then((results) => {
+                    setUsersCount(results.orgs + results.volunteers)
+                });
+
+            getNumberOfPosts()
+                .then((results) => {
+                    setPostCount(results.posts)
+                });
+        }
+
+    }, [localStorage.getItem('userType')]);
 
     const getOptions = () => (
         <>

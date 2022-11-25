@@ -13,7 +13,7 @@ export const createOferta = (body) => new Promise((resolve, reject) => {
 });
 
 export const getOfertas = (username, userType) => new Promise((resolve, reject) => {
-    Axios.get(`${process.env.REACT_APP_API_URL_V1}/offers/get`).then(async (results) => {
+    Axios.get(`${process.env.REACT_APP_API_URL_V1}/offers/get/${username}`).then(async (results) => {
         if(results.status === 200){
             resolve(results.data.filter((post) => filterPosts(post, username, userType)).sort(offersSortDSC));
         }
@@ -22,7 +22,7 @@ export const getOfertas = (username, userType) => new Promise((resolve, reject) 
         }
     })
     .catch(err => {
-        reject(false);
+        reject(err);
     })
 });
 
@@ -37,7 +37,7 @@ export const deleteOferta = (id) => new Promise ((resolve, reject) => {
         }
     })
     .catch(err => {
-        reject(false);
+        reject(err);
     })
     
 });
@@ -52,7 +52,7 @@ export const updateOferta = (id, body) => new Promise ((resolve, reject) => {
         }
     })
     .catch(err => {
-        reject(false);
+        reject(err);
     })
     
 });
@@ -67,7 +67,7 @@ export const getOfertasByCategory = (category) => new Promise ((resolve, reject)
         }
     })
     .catch(err => {
-        reject(false);
+        reject(err);
     })
     
 });
@@ -84,7 +84,7 @@ export const getOrganizationList = () => new Promise ((resolve, reject) => {
         }
     })
     .catch(err => {
-        reject(false);
+        reject(err);
     })
     
 });

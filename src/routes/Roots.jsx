@@ -8,7 +8,7 @@ import Signup from '../containers/Signup/Signup'
 import ForgotPassword from '../containers/ForgotPassword/ForgotPassword'
 import {getOfertas} from '../api/offers'
 import {getUser} from '../api/auth'
-import {offersSortDSC, filteringPost} from '../helpers/filterHelpers';
+import {offersSortDSC, filteringPost} from '../helpers/filterHelpers'
 
 function Roots() {
 

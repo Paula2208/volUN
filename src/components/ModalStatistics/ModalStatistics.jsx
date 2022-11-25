@@ -1,8 +1,9 @@
 import './ModalStatistics.modules.css';
 import Modal from 'react-bootstrap/Modal';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 import StatisticsOrg from '../StatisticsOrg/StatisticsOrg';
+import {getNumberOfUsersPerType} from '../../api/statistics'
 
 function ModalStatistics(props) {
 
@@ -39,8 +40,8 @@ function ModalStatistics(props) {
     }
   ]
 
-  const [orgCount, setOrgCount] = useState(10);
-  const [volunteerCount, setVolunteerCount] = useState(20);
+  const [orgCount, setOrgCount] = useState(0);
+  const [volunteerCount, setVolunteerCount] = useState(0);
   const [orgStatistics, setOrgStatistics] = useState(mockupOrg); //must be []
 
   const data = [
@@ -49,6 +50,17 @@ function ModalStatistics(props) {
   ];
 
   const COLORS = ['#FF69F0', '#1CBBFF'];
+
+  useEffect(() => {
+    if(localStorage.getItem('userType') === 'ADMIN' ){
+        getNumberOfUsersPerType()
+            .then((results) => {
+              setOrgCount(results.orgs);
+              setVolunteerCount(results.volunteers);
+            });
+    }
+
+  }, []);
 
   return (
     <Modal show={show} onHide={handleClose}>

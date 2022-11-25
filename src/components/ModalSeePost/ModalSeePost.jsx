@@ -5,10 +5,12 @@ import { FaCheck, FaBook, FaHeart, FaUsers, FaHands, FaLeaf, FaVolleyballBall, F
 import { MdLocationOn } from "react-icons/md";
 import { BiX } from "react-icons/bi";
 import { toast } from 'react-toastify';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { deleteOferta } from '../../api/offers';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
-import {getDate} from '../../helpers/inputHelpers';
+import { getDate } from '../../helpers/inputHelpers';
+import { postReportsActive, postReportsPending, postReportsDenied } from '../../api/reports'
+import { changeApply } from '../../api/auth';
 
 export const categories = {
   "teach": "Teaching & Learning",
@@ -23,9 +25,9 @@ export const categories = {
 
 function ModalSeePost(props) {
 
-  const { show, handleClose, post, userType, setShowUpdatePost, reloadOffers, setCleanFilters, cleanFilters } = props;
+  const { show, handleClose, post, userType, setShowUpdatePost, reloadOffers, setCleanFilters, cleanFilters, applyPost } = props;
 
-  const mockupReport = {
+  /*const mockupReport = {
     post_id: 12,
     pending: [
       {
@@ -153,11 +155,14 @@ function ModalSeePost(props) {
         status: "DENIED"
       }
     ]
-  }
+  }*/
 
-  const [pending, setPending] = useState(mockupReport.pending); //must be []
-  const [active, setActive] = useState(mockupReport.active); //must be []
-  const [denied, setDenied] = useState(mockupReport.denied); //must be []
+  const [pending, setPending] = useState([]); //must be []
+  const [active, setActive] = useState([]); //must be []
+  const [denied, setDenied] = useState([]); //must be []
+
+  const [loaddingReportActive, setLoaddingReportActive] = useState(false);
+  const [loaddingReportPending, setLoaddingReportPending] = useState(false);
 
   const data = [
     { name: 'Accepted', value: active.length || 0 },
@@ -167,12 +172,40 @@ function ModalSeePost(props) {
 
   const COLORS = ['#44D18D', '#FFF386', '#FF9A3D'];
 
+  useEffect(() => {
+    if (localStorage.getItem('userType') !== 'VOLUNTEER') {
+      loadReports();
+    }
+  }, []);
+
+  const loadReports = () => {
+    setLoaddingReportActive(true);
+    setLoaddingReportPending(true);
+
+    postReportsActive(post.id)
+      .then((results) => {
+        setActive(results);
+        setLoaddingReportActive(false);
+      });
+
+    postReportsPending(post.id)
+      .then((results) => {
+        setPending(results);
+        setLoaddingReportPending(false);
+      });
+
+    postReportsDenied(post.id)
+      .then((results) => {
+        setDenied(results);
+      });
+  }
+
   const buttonText = () => {
-    if (post.status === 'going') {
+    if (post.status === 'going' || post.status === 'active') {
       return "You're in!"
     }
 
-    if (post.status === 'pending') {
+    if (post.status === 'pending' || post.status === 'pendin') {
       return 'Pending'
     }
 
@@ -307,11 +340,17 @@ function ModalSeePost(props) {
     handleClose();
   }
 
-  const applyPost = () => {
-    if (post.status === 'any') {
-
-    }
-    //reload post after apply
+  const responseVolunteer = (username, accepted) => {
+    changeApply(username, post.id, ((accepted) ? 'active' : 'denied'))
+      .then((results) => {
+        if (results) {
+          toast.success('Response Saved!');
+          loadReports();
+        }
+        else {
+          toast.error('Error saving your response.');
+        }
+      })
   }
 
   return (
@@ -351,7 +390,7 @@ function ModalSeePost(props) {
 
             {(userType === 'VOLUNTEER') ? (
               <Button
-                className={`ModalSeePost-Apply-btn ${post.status || ''}`}
+                className={`ModalSeePost-Apply-btn ${((post.status === 'pendin') ? 'pending' : post.status) || ''}`}
                 onClick={applyPost}
               >
                 {buttonText()}
@@ -384,14 +423,21 @@ function ModalSeePost(props) {
               <div className="ModalSeePost-line pending" />
 
               <div className={`ModalSeePost-scroll ${userType} pending`}>
+                {loaddingReportPending && (<div className='spinner lavanda'></div>)}
                 {pending.map((p) => (
-                  <div className="ModalSeePost-scroll-row pending">
+                  <div className="ModalSeePost-scroll-row pending" key={p.username}>
                     <span>{`${p.firstname || ''} ${p.lastname || ''}`}</span>
-                    <button className="ModalSeePost-pending-btn-yes pointer">
-                      <FaCheck/>
+                    <button
+                      className="ModalSeePost-pending-btn-yes pointer"
+                      onClick={() => responseVolunteer(p.username, true)}
+                    >
+                      <FaCheck />
                     </button>
-                    <button className="ModalSeePost-pending-btn-no pointer">
-                      <BiX/>
+                    <button
+                      className="ModalSeePost-pending-btn-no pointer"
+                      onClick={() => responseVolunteer(p.username, false)}
+                    >
+                      <BiX />
                     </button>
                   </div>
                 ))}
@@ -403,8 +449,9 @@ function ModalSeePost(props) {
               <div className="ModalSeePost-line active" />
 
               <div className={`ModalSeePost-scroll ${userType} active`}>
+                {loaddingReportActive && (<div className='spinner lavanda'></div>)}
                 {active.map((p) => (
-                  <div className="ModalSeePost-scroll-row active">
+                  <div className="ModalSeePost-scroll-row active" key={p.username}>
                     <span>{`${p.firstname || ''} ${p.lastname || ''}`}</span>
                   </div>
                 ))}

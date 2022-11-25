@@ -116,11 +116,13 @@
 .Post-Apply-btn.pending{
     background: var(--teach);
     border: 3px solid var(--teach);
+    cursor: default;
 }
 
 .Post-Apply-btn.going{
     background: var(--leaf);
     border: 3px solid var(--leaf);
+    cursor: default;
 }
 
 .Post-Title{

@@ -5,6 +5,8 @@ import { FaBook, FaHeart, FaUsers, FaHands, FaLeaf, FaVolleyballBall, FaPaw, FaP
 import { MdLocationOn } from "react-icons/md";
 import ModalUpdatePost from "../createPost/ModalUpdatePost";
 import {getDate} from '../../helpers/inputHelpers';
+import {apply} from '../../api/auth';
+import { toast } from 'react-toastify';
 
 function Post(props) {
 
@@ -19,11 +21,11 @@ function Post(props) {
     }
 
     const buttonText = () => {
-        if(post.status === 'going'){
+        if(post.status === 'going' || post.status === 'active'){
             return "You're in!"
         }
 
-        if(post.status === 'pending'){
+        if(post.status === 'pending' || post.status === 'pendin'){
             return 'Pending'
         }
 
@@ -116,9 +118,18 @@ function Post(props) {
 
     const applyPost = () => {
         if(post.status === 'any'){
-
+            apply(localStorage.getItem('username'), post.id)
+                .then((results) => {
+                    if(results){
+                        toast.success('Application saved! Wait for the organization response.');
+                        reloadOffers();
+                        setCleanFilters(true);
+                    }
+                    else{
+                        toast.error('Error saving application.');
+                    }
+                })
         }
-        //reload post after apply
     }
 
     const handleCloseModalUpdate = () => {
@@ -130,7 +141,7 @@ function Post(props) {
     return (
         <>
             <div
-                className="Post-container" id={post.post_id || ''}
+                className="Post-container" key={post.post_id || ''}
             >
                 <img
                     src={(post.image && post.image !== '') ? post.image : getPostImageGeneral()}
@@ -164,7 +175,7 @@ function Post(props) {
                     </div>
                     {(userType === 'VOLUNTEER') && (
                         <button 
-                            className={`Post-Apply-btn ${post.status || ''}`}
+                            className={`Post-Apply-btn ${((post.status === 'pendin') ? 'pending': post.status) || ''}`}
                             onClick={applyPost}
                         >
                             {buttonText()}
@@ -184,6 +195,7 @@ function Post(props) {
                 reloadOffers={reloadOffers}
                 cleanFilters={cleanFilters}
                 setCleanFilters={setCleanFilters}
+                applyPost={applyPost}
             />)}
             
             {(showUpdatePost) && (

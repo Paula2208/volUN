@@ -71,12 +71,14 @@
 .ModalSeePost-Apply-btn.pending{
     background: var(--teach);
     border: 3px solid var(--teach);
+    cursor: default;
 }
 
 .ModalSeePost-Apply-btn.going{
     background: var(--leaf);
     border: 3px solid var(--leaf);
     width: 120px !important;
+    cursor: default;
 }
 
 .ModalSeePost-header{

@@ -3,27 +3,30 @@ import Axios from 'axios';
 export const getNumberOfPosts = () => new Promise((resolve, reject) => {
     Axios.get(`${process.env.REACT_APP_API_URL_V1}/statistics/getNumberOfPosts`).then((results) => {
         if(results.status === 200){
-            resolve(results.data);
+            resolve(results.data[0]);
         }
         else{
-            resolve([]);
+            resolve(0);
         }
     })
     .catch(err => {
-        reject(false);
+        reject(err);
     })
 });
 
-export const getNumberOfNonProfits = () => new Promise((resolve, reject) => {
-    Axios.get(`${process.env.REACT_APP_API_URL_V1}/statistics/getNumberOfNonProfits`).then((results) => {
+export const getNumberOfUsersPerType = () => new Promise((resolve, reject) => {
+    Axios.get(`${process.env.REACT_APP_API_URL_V1}/statistics/getNumberOfUserType`).then((results) => {
         if(results.status === 200){
-            resolve(results.data);
+            resolve({
+                ...results.data.orgs[0],
+                ...results.data.volunteers[0]
+            });
         }
         else{
-            resolve([]);
+            resolve(0);
         }
     })
     .catch(err => {
-        reject(false);
+        reject(err);
     })
 });

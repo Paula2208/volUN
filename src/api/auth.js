@@ -29,7 +29,7 @@ export const createUser = (
             }
         })
         .catch(err => {
-            reject(false);
+            reject(err);
         })
 });
 
@@ -55,7 +55,7 @@ export const login = (
             return;
         })
         .catch(err => {
-            reject(false);
+            reject(err);
         })
 });
 
@@ -79,7 +79,7 @@ export const getUser = (
             return;
         })
         .catch(err => {
-            reject(false);
+            reject(err);
         })
 });
 
@@ -103,7 +103,44 @@ export const forgotPassword = (
             }
         })
         .catch(err => {
-            reject(false);
+            reject(err);
         })
 });
 
+export const apply = (
+    username,
+    postId
+) => new Promise((resolve, reject) => {
+    
+    Axios.post(`${process.env.REACT_APP_API_URL_V1}/auth/apply`,
+        {
+            "username": username,
+            "id": postId
+        })
+        .then((results) => {
+            resolve(results.data)
+        })
+        .catch(err => {
+            reject(err);
+        })
+});
+
+export const changeApply = (
+    username,
+    postId, 
+    status
+) => new Promise((resolve, reject) => {
+    
+    Axios.put(`${process.env.REACT_APP_API_URL_V1}/auth/apply`,
+        {
+            "username": username,
+            "id": postId,
+            "status": status
+        })
+        .then((results) => {
+            resolve(results.data)
+        })
+        .catch(err => {
+            reject(err);
+        })
+});
