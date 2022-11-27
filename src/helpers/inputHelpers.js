@@ -5,3 +5,9 @@ export const isEmail = (allegedEmail) => {
         re.test(allegedEmail)
     );
 }
+
+export const getDate = (postDate) => {
+    const date = new Date(postDate);
+
+    return `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()} - ${date.getFullYear()}`
+}

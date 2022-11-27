@@ -33,10 +33,34 @@
 }
 
 .body{
-  background-color: #020A40;
+  background-color: var(--blue-black);
   display: flex;
   flex-direction: column;
-  min-height:100vh;
+  max-height:100vh;
+  overflow: scroll;
+}
+
+.body:hover::-webkit-scrollbar{
+  display: block;
+}
+
+.body::-webkit-scrollbar {
+  width: 5px;
+  display: none;
+}
+
+.body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0px grey; 
+  border-radius: 10px;
+}
+
+.body::-webkit-scrollbar-thumb {
+  background: var(--blue-lavanda); 
+  border-radius: 10px;
+}
+
+.body::-webkit-scrollbar-thumb:hover {
+  background: var(--blue-dark); 
 }
 
 .pointer{
@@ -95,10 +119,9 @@
   border: 3px solid var(--blue-lavanda) !important;
   padding: 0px !important;
   width: fit-content !important;
+  height: fit-content !important;
   border-radius: 70px !important;
 }
-
-
 
 .modal-title {
   color: var(--blue-lavanda);
@@ -136,4 +159,13 @@
 textarea::placeholder {
   color: white;
   font-family: 'Roboto';
+}
+
+option {
+  background: var(--blue-black);
+  border: 3px solid var(--blue-lavanda);
+  font-size: 18px;
+  color: #ffffff;
+  width: 160px;
+  border-radius: 10px;
 }

@@ -8,16 +8,13 @@ import Signup from '../containers/Signup/Signup'
 import ForgotPassword from '../containers/ForgotPassword/ForgotPassword'
 import {getOfertas} from '../api/offers'
 import {getUser} from '../api/auth'
+import {offersSortDSC, filteringPost} from '../helpers/filterHelpers'
 
 function Roots() {
-    const [userType, setUserType] = useState('VOLUNTEER'); //must to be on 'VOLUNTEER'
-    const [isLogged, setIsLogged] = useState(localStorage.getItem('logged') === 'true');
-    const [loaddingPosts, setLoaddingPosts] = useState(false);
-    const [posts, setPosts] = useState([]); //must to be []
 
     /*const postsMockup = [
         {
-            post_id: 12345
+            post_id: 12345,
             title: "Dog's bath time!",
             image: 'https://images.pexels.com/photos/6131165/pexels-photo-6131165.jpeg?auto=compress&cs=tinysrgb&w=800',
             category: 'paw',
@@ -114,25 +111,57 @@ function Roots() {
         }
     ]*/
 
-    const offersSortDSC = (a,b) =>{
-        return b.id - a.id
-    }
+    const [userType, setUserType] = useState('VOLUNTEER'); //must to be on 'VOLUNTEER'
+    const [isLogged, setIsLogged] = useState(localStorage.getItem('logged') === 'true'); //must to be localStorage.getItem('logged') === 'true'
+    const [loaddingPosts, setLoaddingPosts] = useState(false);
+    const [posts, setPosts] = useState([]); //must to be []
+    const [cleanFilters, setCleanFilters] = useState(false);
 
-    const reloadOffers = () => {
+    useEffect(() => {
+        getUser(setUserType)
+
+        if( localStorage.getItem('username') && 
+            localStorage.getItem('username') !== '' &&
+            localStorage.getItem('userType') && 
+            localStorage.getItem('userType') !== ''
+        ){
+            reloadOffers();
+        }
+
+    }, [isLogged, localStorage.getItem('username')]);
+
+    const reloadOffers = (filtered=false , filters={}) => {
         setLoaddingPosts(true);
-        getOfertas()
+        getOfertas(localStorage.getItem('username'), localStorage.getItem('userType'))
             .then((results) => {
                 setLoaddingPosts(false);
-                setPosts(results.filter(post => post.title !== null).sort(offersSortDSC));
-                //setPosts(postsMockup); only for testing
+                let posts;
+
+                if(filtered && JSON.stringify(filters) !== '{}'){
+                    if(
+                        'org' in filters && 
+                        filters.org === '' &&
+                        'date' in filters && 
+                        filters.date === '' &&
+                        'time' in filters && 
+                        filters.time === '' &&
+                        'type' in filters && 
+                        filters.type.length === 0 
+                    ){
+                        posts = results
+                    }
+                    else{
+                        posts = results.filter((post) => filteringPost(post, filters)).sort(offersSortDSC);
+                    }
+                }
+                else{
+                    posts = results;
+                }
+
+                setPosts(posts);
             })
             .catch(console.error)
     }
-
-    useEffect(() => {
-        reloadOffers();
-        getUser(setUserType)
-    }, [isLogged])
 
     if(!isLogged){
         return(
@@ -156,8 +185,17 @@ function Roots() {
                                             setIsLogged={setIsLogged} 
                                             setPosts={setPosts} 
                                             setLoaddingPosts={setLoaddingPosts} 
-                                            loaddingPosts={loaddingPosts}/>}>
-                <Route index element={<Feed posts={posts} userType={userType} reloadOffers={reloadOffers}/>}/>
+                                            loaddingPosts={loaddingPosts}
+                                            cleanFilters={cleanFilters}
+                                            setCleanFilters={setCleanFilters}
+                                            />}>
+                <Route index element={<Feed 
+                                        posts={posts} 
+                                        userType={userType} 
+                                        reloadOffers={reloadOffers}
+                                        cleanFilters={cleanFilters}
+                                        setCleanFilters={setCleanFilters}
+                                        />}/>
                 <Route path="*" element={<Navigate to="/app" />}/>
             </Route>
             <Route path="*" element={<Navigate to="/app" />}/>

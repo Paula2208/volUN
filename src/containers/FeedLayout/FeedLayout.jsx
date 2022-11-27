@@ -1,11 +1,14 @@
 import './FeedLayout.modules.css';
 import { Outlet, useNavigate } from "react-router-dom";
-import { FaHandshake, FaBook, FaHeart, FaUsers, FaHands, FaLeaf, FaVolleyballBall, FaPaw, FaPaintBrush, FaCalendar, FaClock } from "react-icons/fa"
+import { FaHandshake, FaBook, FaHeart, FaUsers, FaHands, FaLeaf, FaVolleyballBall, FaPaw, FaPaintBrush, FaCalendar, FaClock, FaChartPie } from "react-icons/fa"
 import { FiLogOut } from "react-icons/fi";
 import { CgOrganisation } from "react-icons/cg";
-import {MdPostAdd} from "react-icons/md";
+import { MdPostAdd } from "react-icons/md";
 import React, { useState, useEffect } from 'react';
 import ModalCreatePost from '../../components/createPost/ModalCreatePost';
+import ModalStatistics from '../../components/ModalStatistics/ModalStatistics';
+import { getOrganizationList } from '../../api/offers'
+import {getNumberOfUsersPerType, getNumberOfPosts} from '../../api/statistics'
 
 import TimePicker from 'react-time-picker';
 import DatePicker from "react-datepicker";
@@ -17,35 +20,88 @@ export const getTimeNow = () => {
 
 function FeedLayout(props) {
 
-    const {userType, setUserType, setIsLogged, setPosts, reloadOffers, setLoaddingPosts, loaddingPosts} = props;
+    const {
+        userType,
+        setUserType,
+        setIsLogged,
+        setPosts,
+        reloadOffers,
+        setLoaddingPosts,
+        loaddingPosts,
+        cleanFilters,
+        setCleanFilters } = props;
 
     const navigate = useNavigate();
 
-    const[teach, setTeach] = useState(false);
-    const[heart, setHeart] = useState(false);
-    const[users, setUsers] = useState(false);
-    const[hands, setHands] = useState(false);
-    const[leaf, setLeaf] = useState(false);
-    const[ball, setBall] = useState(false);
-    const[paw, setPaw] = useState(false);
-    const[paint, setPaint] = useState(false);
+    const [teach, setTeach] = useState(false);
+    const [heart, setHeart] = useState(false);
+    const [users, setUsers] = useState(false);
+    const [hands, setHands] = useState(false);
+    const [leaf, setLeaf] = useState(false);
+    const [ball, setBall] = useState(false);
+    const [paw, setPaw] = useState(false);
+    const [paint, setPaint] = useState(false);
 
-    const[organization, setOrganization] = useState('');
-    const[date, setDate] = useState(new Date());
-    const[time, setTime] = useState(getTimeNow());
+    const [organization, setOrganization] = useState('');
+    const [date, setDate] = useState(new Date());
+    const [time, setTime] = useState(getTimeNow());
+    const [dateChange, setDateChange] = useState(false);
+    const [timeChange, setTimeChange] = useState(false);
 
-    const[postCount, setPostCount] = useState(0);
-    const[usersCount, setUsersCount] = useState(0);
+    const [postCount, setPostCount] = useState(0);
+    const [usersCount, setUsersCount] = useState(0);
 
-    const[organizations, setOrganizations] = useState([{name: 'organization 1', username: 'org1'},{name: 'organization 2', username: 'org2'}]); //@todo
+    const [organizations, setOrganizations] = useState([]);
 
-    const[showCreateModal, setShowCreateModal] = useState(false);
+    const [showCreateModal, setShowCreateModal] = useState(false);
+    const [showStatisticsModal, setShowStatisticsModal] = useState(false);
 
-    const getOptions = () => ( //@audit
+    useEffect(() => {
+        getOrganizationList()
+            .then((results) => {
+                setOrganizations(results.map((org) => ({ name: org.nonProfitName, username: org.nonProfitUsername })))
+            })
+    }, [localStorage.getItem('nameUser')])
+
+    useEffect(() => {
+        if (cleanFilters) {
+            setTeach(false);
+            setUsers(false);
+            setHands(false);
+            setLeaf(false);
+            setBall(false);
+            setPaw(false);
+            setPaint(false);
+            setHeart(false);
+            setOrganization('');
+            setDateChange(false);
+            setTimeChange(false);
+            setDate(new Date());
+            setTime(getTimeNow());
+            setCleanFilters(false);
+        }
+    }, [cleanFilters])
+
+    useEffect(() => {
+        if(localStorage.getItem('userType') === 'ADMIN' ){
+            getNumberOfUsersPerType()
+                .then((results) => {
+                    setUsersCount(results.orgs + results.volunteers)
+                });
+
+            getNumberOfPosts()
+                .then((results) => {
+                    setPostCount(results.posts)
+                });
+        }
+
+    }, [localStorage.getItem('userType')]);
+
+    const getOptions = () => (
         <>
-          {organizations.map((organization) => (
-            <option value={organization.username} key={organization.username}>{organization.name}</option>
-          ))}
+            {organizations.map((organization) => (
+                <option value={organization.username} key={organization.username}>{organization.name}</option>
+            ))}
         </>
     );
 
@@ -53,6 +109,8 @@ function FeedLayout(props) {
         setUserType('VOLUNTEER');
         localStorage.setItem('logged', false);
         localStorage.setItem('username', '');
+        localStorage.setItem('nameUser', '');
+        localStorage.setItem('userType', '');
 
         setIsLogged(false);
         navigate("../");
@@ -60,10 +118,35 @@ function FeedLayout(props) {
 
     const filterPost = () => {
         setLoaddingPosts(true);
+
+        const typesFilter = [];
+
+        if (teach) typesFilter.push('teach');
+        if (heart) typesFilter.push('heart');
+        if (users) typesFilter.push('users');
+        if (hands) typesFilter.push('hands');
+        if (leaf) typesFilter.push('leaf');
+        if (ball) typesFilter.push('ball');
+        if (paw) typesFilter.push('paw');
+        if (paint) typesFilter.push('paint');
+
+        reloadOffers(true, {
+            type: typesFilter,
+            org: organization,
+            date: dateChange ? date : '',
+            time: timeChange ? time : ''
+        })
+
+        setDateChange(false);
+        setTimeChange(false);
     }
 
     const handleCloseModal = () => {
         setShowCreateModal(false);
+    }
+
+    const handleCloseModalStatistics = () => {
+        setShowStatisticsModal(false);
     }
 
     return (
@@ -79,11 +162,11 @@ function FeedLayout(props) {
 
                     <div className="FeedLayout-Data-Container">
                         <span className="FeedLayout-Span">Categories</span>
-                        <div className="FeedLayout-line"/>
+                        <div className="FeedLayout-line" />
 
                         <div className="FeedLayout-Categories">
                             <div className="FeedLayout-Category-Container">
-                                <div 
+                                <div
                                     className={`FeedLayout-Category ${(teach) ? 'active' : 'inactive'} teach pointer`}
                                     onClick={() => setTeach(!teach)}
                                 >
@@ -120,7 +203,7 @@ function FeedLayout(props) {
                             </div>
 
                             <div className="FeedLayout-Category-Container">
-                                <div className={`FeedLayout-Category ${(leaf) ? 'active' : 'inactive'} leaf pointer`}                                    
+                                <div className={`FeedLayout-Category ${(leaf) ? 'active' : 'inactive'} leaf pointer`}
                                     onClick={() => setLeaf(!leaf)}
                                 >
                                     <FaLeaf className="FeedLayout-Category-Icon" />
@@ -129,8 +212,8 @@ function FeedLayout(props) {
                             </div>
 
                             <div className="FeedLayout-Category-Container">
-                                <div className={`FeedLayout-Category ${(ball) ? 'active' : 'inactive'} ball pointer`}                                
-                                onClick={() => setBall(!ball)}
+                                <div className={`FeedLayout-Category ${(ball) ? 'active' : 'inactive'} ball pointer`}
+                                    onClick={() => setBall(!ball)}
                                 >
                                     <FaVolleyballBall className="FeedLayout-Category-Icon" />
                                 </div>
@@ -138,8 +221,8 @@ function FeedLayout(props) {
                             </div>
 
                             <div className="FeedLayout-Category-Container">
-                                <div className={`FeedLayout-Category ${(paw) ? 'active' : 'inactive'} paw pointer`}                              
-                                 onClick={() => setPaw(!paw)}
+                                <div className={`FeedLayout-Category ${(paw) ? 'active' : 'inactive'} paw pointer`}
+                                    onClick={() => setPaw(!paw)}
                                 >
                                     <FaPaw className="FeedLayout-Category-Icon" />
                                 </div>
@@ -159,73 +242,89 @@ function FeedLayout(props) {
 
                     <div className="FeedLayout-Data-Container">
                         <span className="FeedLayout-Span">Information</span>
-                        <div className="FeedLayout-line"/>
+                        <div className="FeedLayout-line" />
 
                         <div>
                             {(userType !== 'NON_PROFIT') && (
-                            <div className="FeedLayout-Info-Container pointer">
-                                <CgOrganisation className="FeedLayout-Info-Icon" />
-                                <div className="FeedLayout-Input">
-                                    <select 
-                                        onChange={(e) => setOrganization(e.target.value)} 
-                                        value={organization}
-                                    >
-                                        <option value={''} disabled>Organization</option>
-                                        {getOptions()}
-                                    </select>
-                                    <div className="FeedLayout-input-line org"/>
+                                <div className="FeedLayout-Info-Container pointer">
+                                    <CgOrganisation className="FeedLayout-Info-Icon" />
+                                    <div className="FeedLayout-Input">
+                                        <select
+                                            onChange={(e) => setOrganization(e.target.value)}
+                                            value={organization}
+                                        >
+                                            <option value={''} disabled>Organization</option>
+                                            {getOptions()}
+                                        </select>
+                                        <div className="FeedLayout-input-line org" />
+                                    </div>
                                 </div>
-                            </div>
                             )}
 
                             <div className="FeedLayout-Info-Container">
                                 <FaCalendar className="FeedLayout-Info-Icon" />
                                 <div className="FeedLayout-Input">
-                                    <DatePicker 
+                                    <DatePicker
                                         className="FeedLayout-Input-datePicker"
                                         selected={date}
-                                        onChange={(e) => setDate(e)}
+                                        onChange={(e) => {
+                                            setDate(e);
+                                            setDateChange(true);
+                                        }}
                                     />
-                                    <div className="FeedLayout-input-line date"/>
+                                    <div className="FeedLayout-input-line date" />
                                 </div>
                             </div>
 
                             <div className="FeedLayout-Info-Container">
                                 <FaClock className="FeedLayout-Info-Icon" />
                                 <div className="FeedLayout-Input">
-                                    <TimePicker 
+                                    <TimePicker
                                         className="FeedLayout-Input-timePicker"
-                                        onChange={(e) => setTime(e)} 
-                                        value={time} 
+                                        onChange={(e) => {
+                                            setTime(e);
+                                            setTimeChange(true);
+                                        }}
+                                        value={time}
                                     />
-                                    <div className="FeedLayout-input-line minus time"/>
+                                    <div className="FeedLayout-input-line minus time" />
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <button 
-                        className="FeedLayout-Btn-Filter pointer"
-                        onClick={filterPost}
-                    >
-                        Filter
-                    </button>
-
+                    <div className="FeedLayout-btn-filters">
+                        <button
+                            className="FeedLayout-Btn-Filter pointer"
+                            onClick={filterPost}
+                        >
+                            Filter
+                        </button>
+                        <span 
+                            className="FeedLayout-Clean pointer"
+                            onClick={() => {
+                                reloadOffers();
+                                setCleanFilters(true);
+                            }}
+                        >
+                            Clean
+                        </span>
+                    </div>
                 </div>
 
-                <div 
+                <div
                     className="FeedLayout-Logout pointer"
                     onClick={logout}
                 >
-                    <FiLogOut className="FeedLayout-Logout-icon"/>
+                    <FiLogOut className="FeedLayout-Logout-icon" />
                     <span>Logout</span>
                 </div>
             </div>
-            
+
             <div className="FeedLayout-content">
                 <div className="FeedLayout-header">
                     {(userType === 'ADMIN') && (
-                        <div 
+                        <div
                             className="FeedLayout-counting pointer"
                         >
                             <div className="FeedLayout-counting-row">
@@ -246,7 +345,7 @@ function FeedLayout(props) {
                                     {`${usersCount}`}
                                 </span>
                             </div>
-                            <div className="FeedLayout-counting-line"/>
+                            <div className="FeedLayout-counting-line" />
                             <span className="blue bold">
                                 Counting
                             </span>
@@ -254,11 +353,11 @@ function FeedLayout(props) {
                     )}
 
                     {(userType === 'ADMIN' || userType === 'NON_PROFIT') && (
-                        <div 
+                        <div
                             className="FeedLayout-startPost pointer"
-                            onClick={()=> setShowCreateModal(true)}
+                            onClick={() => setShowCreateModal(true)}
                         >
-                            <MdPostAdd className="FeedLayout-startPost-Icon"/>
+                            <MdPostAdd className="FeedLayout-startPost-Icon" />
                             <div className="FeedLayout-startPost-lavanda">
                                 Start a Post
                             </div>
@@ -266,8 +365,12 @@ function FeedLayout(props) {
                     )}
 
                     {(userType === 'ADMIN') && (
-                        <div className="FeedLayout-statisticsButton">
-                            {/*@todo para el sprint 3 */}
+                        <div
+                            className="FeedLayout-statisticsButton pointer"
+                            onClick={() => setShowStatisticsModal(true)}
+                        >
+                            <FaChartPie className="FeedLayout-statistics-Icon" />
+                            <span>See Statistics</span>
                         </div>
                     )}
                 </div>
@@ -277,7 +380,8 @@ function FeedLayout(props) {
                 <Outlet />
             </div>
 
-            {(showCreateModal) && (<ModalCreatePost reloadOffers={reloadOffers} show={showCreateModal} handleClose={handleCloseModal}/>)}
+            {(showCreateModal) && (<ModalCreatePost reloadOffers={reloadOffers} show={showCreateModal} handleClose={handleCloseModal} />)}
+            {(showStatisticsModal) && (<ModalStatistics show={showStatisticsModal} handleClose={handleCloseModalStatistics} />)}
 
         </div>
     );
