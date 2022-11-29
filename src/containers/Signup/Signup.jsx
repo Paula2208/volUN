@@ -68,7 +68,15 @@ function Signup() {
                     setLoading(false);
                 }
             })
-            .catch(console.error)
+            .catch((err) => {
+                if (err.response.status === 400) {
+                    toast.error(err.response.data);
+                }
+                else {
+                    toast.error('Something were wrong.');
+                }
+                setLoading(false);
+            });
     }
 
     const handleCancel = (e) => {
@@ -158,13 +166,15 @@ function Signup() {
                 </div>
 
                 <div className="Signup-buttons">
-                    <button 
+                    <button
                         className="Signup-btn-create"
                         onClick={handleCreate}
                     >
-                        Signup
+                        {loading ? (
+                            <div className='spinner'></div>
+                        ) : ('Signup')}
                     </button>
-                    <button 
+                    <button
                         className="Signup-btn-cancel"
                         onClick={handleCancel}
                     >

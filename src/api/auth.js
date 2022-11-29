@@ -20,7 +20,6 @@ export const createUser = (
             accountType: accountType
         })
         .then((results) => {
-
             if(results.status === 200){
                 resolve(true);
             }

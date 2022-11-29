@@ -19,12 +19,20 @@ function FPstep1(props) {
         .then((status) => {
           if (status === 201) {
             setStep(2);
-            setLoading(false);
           }
           else {
             toast.error('Error. Please, try again later!');
-            setLoading(false);
           }
+          setLoading(false);
+        })
+        .catch((error) => {
+          if(error.response.status === 404){
+            toast.error('Invalid email. Please enter a registered email.');
+          }
+          else{
+            toast.error('Error sending retrieve password code.');
+          }
+          setLoading(false);
         })
     }
     else {
