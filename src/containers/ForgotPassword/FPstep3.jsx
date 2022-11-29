@@ -1,17 +1,30 @@
 import './ForgotPassword.modules.css';
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { changePassword } from '../../api/auth'
 
 function FPstep3(props) {
 
   const navigate = useNavigate();
 
   const[password, setPassword] = useState('');
+  const [loadingSend, setLoading] = useState(false);
+
+  const {setStep, code, email} = props;
 
   const handleSendStep3 = () => {
-    console.log('button send clicked - step 3 forgot password')
-    props.setStep(1);
-    navigate("../");
+    changePassword(password, email, code)
+      .then((results) => {
+        if(results){
+          toast.success('Password updated!');
+          setStep(1);
+          navigate("../");
+        }
+        else{
+          toast.error('Something went wrong. Please try again.');
+        }
+      });
   }
 
   return (
@@ -32,7 +45,9 @@ function FPstep3(props) {
         <button className="ForgotPassword-btn-send pointer Forgot-Password-recover"
                 onClick={handleSendStep3}
         >
-          Recover
+          {loadingSend ? (
+            <div className='spinner'></div>
+          ) : ('Change')}
         </button>
       </div>
       

@@ -36,7 +36,8 @@ export const createUser = (
 export const login = (
     username,
     password,
-    setIsLogged
+    setIsLogged, 
+    setUsername
 ) => new Promise((resolve, reject) => {
     
     Axios.post(`${process.env.REACT_APP_API_URL_V1}/auth`,
@@ -49,8 +50,8 @@ export const login = (
                 setIsLogged(true);
                 localStorage.setItem('logged', true);
                 localStorage.setItem('username', username);
+                setUsername(username);
             }
-
             resolve(results.data); 
             return;
         })
@@ -60,27 +61,31 @@ export const login = (
 });
 
 export const getUser = (
-    setUserType
+    setUserType,
+    setCleanFilters
 ) => new Promise((resolve, reject) => {
     
-    Axios.get(`${process.env.REACT_APP_API_URL_V1}/auth/${localStorage.getItem('username') || ''}`)
-        .then((results) => {
+    if(localStorage.getItem('username') !== ''){
+        Axios.get(`${process.env.REACT_APP_API_URL_V1}/auth/${localStorage.getItem('username') || ''}`)
+            .then((results) => {
 
-            if(results.data === false){
-                console.log('Error getting user.')
-            }
-            else{
-                localStorage.setItem('nameUser', `${results.data.name} ${results.data.lastName}`);
-                localStorage.setItem('userType', results.data.accountType);
-                setUserType(results.data.accountType);
-            }
+                if(results.data === false){
+                    console.log('Error getting user.')
+                }
+                else{
+                    localStorage.setItem('nameUser', `${results.data.name} ${results.data.lastName}`);
+                    localStorage.setItem('userType', results.data.accountType);
+                    setUserType(results.data.accountType);
+                    setCleanFilters(true);
+                }
 
-            resolve(results.data); 
-            return;
-        })
-        .catch(err => {
-            reject(err);
-        })
+                resolve(results.data); 
+                return;
+            })
+            .catch(err => {
+                reject(err);
+            })
+    }
 });
 
 
@@ -149,9 +154,45 @@ export const sendForgotPasswordCode = (
     email
 ) => new Promise((resolve, reject) => {
     
-    Axios.post(`${process.env.REACT_APP_API_URL_V1}/auth/forgotPassword`,
+    Axios.post(`${process.env.REACT_APP_API_URL_V1}/auth/send-code-forgot`,
         {
             "email": email,
+        })
+        .then((results) => {
+            resolve(results.status);
+        })
+        .catch(err => {
+            reject(err);
+        })
+});
+
+export const checkPasswordCode = (
+    code
+) => new Promise((resolve, reject) => {
+    
+    Axios.post(`${process.env.REACT_APP_API_URL_V1}/auth/check-code-forgot`,
+        {
+            "code": code,
+        })
+        .then((results) => {
+            resolve(results.data);
+        })
+        .catch(err => {
+            reject(err);
+        })
+});
+
+export const changePassword = (
+    password,
+    email,
+    code
+) => new Promise((resolve, reject) => {
+    
+    Axios.post(`${process.env.REACT_APP_API_URL_V1}/auth/retrieve-password`,
+        {
+            "email": email,
+            "code" : code,
+            "password" : password
         })
         .then((results) => {
             resolve(results.data)

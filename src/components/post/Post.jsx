@@ -122,7 +122,6 @@ function Post(props) {
                 .then((results) => {
                     if(results){
                         toast.success('Application saved! Wait for the organization response.');
-                        reloadOffers();
                         setCleanFilters(true);
                     }
                     else{
