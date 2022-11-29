@@ -111,14 +111,15 @@ function Roots() {
         }
     ]*/
 
-    const [userType, setUserType] = useState('VOLUNTEER'); //must to be on 'VOLUNTEER'
+    const [userType, setUserType] = useState(localStorage.getItem('userType') || 'VOLUNTEER'); //must to be on 'VOLUNTEER'
     const [isLogged, setIsLogged] = useState(localStorage.getItem('logged') === 'true'); //must to be localStorage.getItem('logged') === 'true'
     const [loaddingPosts, setLoaddingPosts] = useState(false);
     const [posts, setPosts] = useState([]); //must to be []
     const [cleanFilters, setCleanFilters] = useState(false);
+    const [username, setUsername] = useState(localStorage.getItem('username') || '');
 
     useEffect(() => {
-        getUser(setUserType)
+        getUser(setUserType,setCleanFilters); 
 
         if( localStorage.getItem('username') && 
             localStorage.getItem('username') !== '' &&
@@ -128,7 +129,7 @@ function Roots() {
             reloadOffers();
         }
 
-    }, [isLogged, localStorage.getItem('username')]);
+    }, [isLogged, username, userType]);
 
     const reloadOffers = (filtered=false , filters={}) => {
         setLoaddingPosts(true);
@@ -167,7 +168,7 @@ function Roots() {
         return(
             <Routes>
                 <Route path="/" element={<LogLayout />}>
-                    <Route index element={<Login setIsLogged={setIsLogged}/>}/>
+                    <Route index element={<Login setIsLogged={setIsLogged} username={username} setUsername={setUsername}/>}/>
                     <Route path="signup" element={<Signup />}/>
                     <Route path="forgot-password" element={<ForgotPassword />}/>
                     <Route path="*" element={<Navigate to="/" />}/>

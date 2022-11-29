@@ -321,7 +321,6 @@ function ModalSeePost(props) {
       .then((results) => {
         if (results) {
           toast.success(`Post deleted.`)
-          reloadOffers();
           setCleanFilters(true);
           handleClose();
         }

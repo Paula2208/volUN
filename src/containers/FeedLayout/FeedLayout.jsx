@@ -79,6 +79,7 @@ function FeedLayout(props) {
             setDate(new Date());
             setTime(getTimeNow());
             setCleanFilters(false);
+            reloadOffers();
         }
     }, [cleanFilters])
 
@@ -303,7 +304,6 @@ function FeedLayout(props) {
                         <span 
                             className="FeedLayout-Clean pointer"
                             onClick={() => {
-                                reloadOffers();
                                 setCleanFilters(true);
                             }}
                         >

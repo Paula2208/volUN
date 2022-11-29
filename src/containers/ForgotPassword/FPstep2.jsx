@@ -1,10 +1,14 @@
 import './ForgotPassword.modules.css';
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { checkPasswordCode } from '../../api/auth'
 
 function FPstep2(props) {
 
   const navigate = useNavigate();
+
+  const {setStep, code, setCode} = props;
 
   const[digit1, setDigit1] = useState('');
   const[digit2, setDigit2] = useState('');
@@ -12,18 +16,36 @@ function FPstep2(props) {
   const[digit4, setDigit4] = useState('');
   const[digit5, setDigit5] = useState('');
 
+  const [loadingSend, setLoading] = useState(false);
+
   const handleSendStep2 = () => {
-    console.log('button send clicked - step 2 forgot password')
-    console.log(digit1+digit2+digit3+digit4+digit5);
-    
-    props.setStep(3);
+
+    if(digit1 && digit2 && digit3 && digit4 && digit5){
+      setLoading(true);
+      setCode(digit1 + digit2 + digit3 + digit4 + digit5);
+
+      checkPasswordCode(digit1 + digit2 + digit3 + digit4 + digit5)
+        .then((results) => {
+          if(results){
+            setLoading(false);
+            setStep(3);
+          }
+          else{
+            setLoading(false);
+            toast.error('Your code is not correct!');
+          }
+        });
+    }
+    else{
+      toast.error('Please enter the passcode.')
+    }
   }
 
   return (
     <div className="FPstep2-container">
 
       <span className="ForgotPassword-Message">
-        Please enter the code we send to your email here to recover your password!
+        Please enter here the code we send to your email to retrieve your password!
       </span>
 
       <div className="FPstep2-Input-Container">
@@ -31,7 +53,7 @@ function FPstep2(props) {
             type="text"
             className="FPstep2-input" 
             placeholder=""
-            maxlength="1"
+            maxLength="1"
             value={digit1}
             onChange={(e) => setDigit1(e.target.value)}
           />
@@ -39,7 +61,7 @@ function FPstep2(props) {
             type="text"
             className="FPstep2-input" 
             placeholder=""
-            maxlength="1"
+            maxLength="1"
             value={digit2}
             onChange={(e) => setDigit2(e.target.value)}
           />
@@ -47,7 +69,7 @@ function FPstep2(props) {
             type="text"
             className="FPstep2-input" 
             placeholder=""
-            maxlength="1"
+            maxLength="1"
             value={digit3}
             onChange={(e) => setDigit3(e.target.value)}
           />
@@ -55,7 +77,7 @@ function FPstep2(props) {
             type="text"
             className="FPstep2-input" 
             placeholder=""
-            maxlength="1"
+            maxLength="1"
             value={digit4}
             onChange={(e) => setDigit4(e.target.value)}
           />
@@ -63,7 +85,7 @@ function FPstep2(props) {
             type="text"
             className="FPstep2-input" 
             placeholder=""
-            maxlength="1"
+            maxLength="1"
             value={digit5}
             onChange={(e) => setDigit5(e.target.value)}
           />
@@ -73,7 +95,9 @@ function FPstep2(props) {
         <button className="ForgotPassword-btn-send pointer"
                 onClick={handleSendStep2}
         >
-          Send
+          {loadingSend ? (
+            <div className='spinner'></div>
+          ) : ('Check')}
         </button>
         <button className="ForgotPassword-btn-signup pointer"
                 onClick={() => navigate("../signup")}

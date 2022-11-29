@@ -6,18 +6,19 @@ import { toast } from 'react-toastify';
 
 function Login(props) {
 
-  const {setIsLogged} = props
+  const {setIsLogged, setUsername, username} = props
 
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('');
+  
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [userToLogin, setUserToLogin] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
 
-    if(username === ''){
+    if(userToLogin === ''){
       toast.error("Please add a username");
       return
     }
@@ -29,7 +30,7 @@ function Login(props) {
 
     setLoading(true);
 
-    login(username, password, setIsLogged)
+    login(userToLogin, password, setIsLogged, setUsername)
       .then((results) => {
         if (results === true) {
           navigate("/app");
@@ -50,8 +51,8 @@ function Login(props) {
           type="text"
           className="Login-input" 
           placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={userToLogin}
+          onChange={(e) => setUserToLogin(e.target.value)}
         />
         <div className="Login-input-line line-more"/>
         <input 
